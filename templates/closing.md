@@ -1,4 +1,8 @@
 ---
+marp: true
+theme: fastr
+paginate: true
+---
 
 # Thank You!
 

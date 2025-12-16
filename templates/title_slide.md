@@ -1,4 +1,8 @@
 ---
+marp: true
+theme: fastr
+paginate: true
+---
 
 # {{WORKSHOP_NAME}}
 
