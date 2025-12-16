@@ -44,7 +44,20 @@ Work in your browser without installing anything! GitHub Codespaces provides a c
 
 For local development, you'll need to install Git, Python, VS Code, Node.js, and Marp CLI.
 
-[Jump to installation instructions](#requirements)
+**[See Local Setup Guide](docs/local-setup.md)** for step-by-step installation instructions.
+
+---
+
+## Documentation
+
+Comprehensive guides for using the FASTR slide builder:
+
+- **[Full Documentation](docs/)** - All guides and references
+- **[Markdown Guide](docs/markdown-guide.md)** - Cheat sheet for writing Marp slides
+- **[Building Decks](docs/building-decks.md)** - How to assemble and render presentations
+- **[Local Setup](docs/local-setup.md)** - Installation guide for local development
+
+**New to Marp markdown?** Start with the [Markdown Guide](docs/markdown-guide.md) - it's designed to be scannable with lots of examples!
 
 ## Building a Workshop Deck (Local or Codespaces)
 
