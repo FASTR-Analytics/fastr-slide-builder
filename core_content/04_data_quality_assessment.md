@@ -45,7 +45,7 @@ These three questions help us understand if we can trust the data for decision-m
 ## Completeness: Did We Get Reports?
 
 **What we're checking:**
-Each month, are facilities sending in their reports?
+<br>Each month, are facilities sending in their reports?
 
 **Example:**
 - District has 20 health centers
