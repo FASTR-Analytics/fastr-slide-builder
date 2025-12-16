@@ -12,7 +12,6 @@ HOW TO USE:
 2. Edit this config.py with your workshop details
 
 3. Run: python3 tools/build_deck.py
-   (You'll be prompted to set up your schedule interactively!)
 
 ═══════════════════════════════════════════════════════════════════════════════
 """
@@ -36,56 +35,54 @@ WORKSHOP_CONFIG = {
 
 
     # ═══════════════════════════════════════════════════════════════════════
-    # SECTION 2: OPENING SLIDES
+    # SECTION 2: YOUR DECK - What slides, in what order
     # ═══════════════════════════════════════════════════════════════════════
-    # These appear at the very beginning of the deck
-
-    # Show the agenda slide after the title?
-    # Set to True if you have an agenda.png image in your workshop folder
-    'include_agenda': True,
-
-    # Agenda image filename (must be in your workshop folder)
-    # Tip: Create your agenda in PowerPoint/Canva, export as PNG
-    'agenda_image': 'agenda.png',
-
-
-    # ═══════════════════════════════════════════════════════════════════════
-    # SECTION 3: WORKSHOP SESSIONS
-    # ═══════════════════════════════════════════════════════════════════════
-    # Choose which sessions to include in your workshop.
     #
-    # SESSIONS (in recommended order):
+    # List everything you want in your deck, in order.
+    # - Built-in sessions: 'intro', 'extraction', 'dq_assessment', etc.
+    # - Your custom slides: 'objectives.md', 'country-data.md', etc.
+    #
+    # Just put your .md files wherever you want them to appear!
+    #
+    # AVAILABLE BUILT-IN SESSIONS:
     # ┌──────────────────────────────────────────────────────────────────────┐
-    # │  OPENING                                                             │
-    # │    'intro'       = Background & FASTR Approach (light, ~30 min)      │
-    # │    'extraction'  = Data Extraction from DHIS2 (medium, ~45 min)      │
-    # │                                                                      │
-    # │  CORE SESSIONS                                                       │
-    # │    'dq_assessment' = Data Quality Assessment (core, ~90 min)         │
-    # │    'dq_adjustment' = Data Adjustment Methods (core, ~60 min)         │
-    # │    'disruption'    = Service Disruption Detection (core, ~90 min)    │
-    # │    'coverage'      = Coverage Analysis (core, ~90 min)               │
-    # │                                                                      │
-    # │  SUPPLEMENTAL                                                        │
-    # │    'facility'    = Facility Assessments (light, ~30 min)             │
+    # │  'agenda'        = Agenda slide (needs agenda.png in your folder)    │
+    # │  'intro'         = Background & FASTR Approach (~30 min)             │
+    # │  'extraction'    = Data Extraction from DHIS2 (~45 min)              │
+    # │  'dq_assessment' = Data Quality Assessment (~90 min)                 │
+    # │  'dq_adjustment' = Data Adjustment Methods (~60 min)                 │
+    # │  'disruption'    = Service Disruption Detection (~90 min)            │
+    # │  'coverage'      = Coverage Analysis (~90 min)                       │
+    # │  'facility'      = Facility Assessments (~30 min)                    │
     # └──────────────────────────────────────────────────────────────────────┘
-    #
-    # Example for a focused 2-day workshop:
-    #   'sessions': ['intro', 'extraction', 'dq_assessment', 'dq_adjustment',
-    #                'disruption', 'coverage'],
 
-    'sessions': ['intro', 'extraction', 'dq_assessment', 'dq_adjustment',
-                 'disruption', 'coverage'],
+    'deck_order': [
+        # --- Opening ---
+        'agenda',
+        'objectives.md',        # ← Add your objectives slide here
+        'country-overview.md',  # ← Add country context here
+
+        # --- Core Content ---
+        'intro',
+        'health-priorities.md', # ← Add country priorities here
+        'extraction',
+        'dq_assessment',
+        'dq-findings.md',       # ← Add your DQ findings here
+        'dq_adjustment',
+        'disruption',
+        'disruption-local.md',  # ← Add local disruption data here
+        'coverage',
+        'coverage-results.md',  # ← Add coverage results here
+
+        # --- Closing ---
+        'next-steps.md',        # ← Add action items here
+    ],
 
 
     # ═══════════════════════════════════════════════════════════════════════
-    # SECTION 4: WORKSHOP SCHEDULE & BREAKS
+    # SECTION 3: WORKSHOP SCHEDULE & BREAKS
     # ═══════════════════════════════════════════════════════════════════════
-    # Set workshop_days to None to be prompted interactively when building.
-    # Or set it to 1, 2, or 3 to use preset schedules.
-    #
-    # The build script will suggest where to place tea breaks, lunch breaks,
-    # and day-end slides based on your content and number of days.
+    # How many days? Set to None to be prompted when building.
 
     'workshop_days': None,  # None = prompt me, or 1, 2, 3
 
@@ -102,89 +99,13 @@ WORKSHOP_CONFIG = {
 
 
     # ═══════════════════════════════════════════════════════════════════════
-    # SECTION 5: CUSTOM SLIDES (Your Country-Specific Content)
+    # SECTION 4: CLOSING SLIDES
     # ═══════════════════════════════════════════════════════════════════════
-    # Place your slides exactly where they belong in the presentation.
-    #
-    # Put your custom slide files in your workshop folder, then list them
-    # in the appropriate position below.
-    #
-    # AVAILABLE POSITIONS:
-    #   'after_agenda'        → Right after the agenda (objectives, overview)
-    #   'after_intro'         → After Background & FASTR Approach
-    #   'after_extraction'    → After Data Extraction
-    #   'after_dq_assessment' → After Data Quality Assessment
-    #   'after_dq_adjustment' → After Data Adjustment
-    #   'after_disruption'    → After Disruption Detection
-    #   'after_coverage'      → After Coverage Analysis
-    #   'after_facility'      → After Facility Assessments
-    #   'before_closing'      → Right before Thank You / Contact slides
 
-    'custom_slides': {
-        'after_agenda': [],           # e.g., ['objectives.md', 'country-overview.md']
-        'after_intro': [],            # e.g., ['health-priorities.md']
-        'after_extraction': [],
-        'after_dq_assessment': [],    # e.g., ['country-dq-findings.md']
-        'after_dq_adjustment': [],
-        'after_disruption': [],       # e.g., ['covid-impact-local.md']
-        'after_coverage': [],         # e.g., ['vaccination-coverage-results.md']
-        'after_facility': [],
-        'before_closing': [],         # e.g., ['next-steps.md', 'action-items.md']
-    },
-
-
-    # ═══════════════════════════════════════════════════════════════════════
-    # SECTION 6: CLOSING SLIDES
-    # ═══════════════════════════════════════════════════════════════════════
-    # These appear at the very end of the deck
-
-    # Include "Thank You" and contact information slides?
+    # Include "Thank You" and contact information slides at the end?
     'include_closing': True,
 
-
-    # ═══════════════════════════════════════════════════════════════════════
-    # BACKWARDS COMPATIBILITY (optional - for old configs)
-    # ═══════════════════════════════════════════════════════════════════════
-    # If you have an old config with 'sections': [1, 2, 3, 4, 5, 6], it will
-    # still work! The numbers map to:
-    #   1 -> 'intro' (part 1)
-    #   2 -> 'intro' (part 2)
-    #   3 -> 'extraction'
-    #   4 -> 'dq_assessment' + 'dq_adjustment'
-    #   5 -> 'disruption'
-    #   6 -> 'coverage'
-    #   7 -> 'facility'
+    # Agenda image filename (must be in your workshop folder)
+    'agenda_image': 'agenda.png',
 
 }
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-#                              QUICK REFERENCE
-# ═══════════════════════════════════════════════════════════════════════════════
-#
-# INTERACTIVE BUILD:
-#   When you run: python3 tools/build_deck.py
-#   You'll be asked:
-#     1. How many days is your workshop? (1, 2, or 3)
-#     2. Preview of suggested schedule with break placements
-#     3. Confirm or adjust the schedule
-#
-# SLIDE ORDER IN FINAL DECK:
-# ┌─────────────────────────────────────────────────────────────────────────────┐
-# │  1. Title Slide                                                             │
-# │  2. Agenda Slide (if include_agenda = True)                                 │
-# │  3. Sessions with breaks inserted at natural points:                        │
-# │     ├── Intro                                                               │
-# │     │   ☕ Tea Break                                                        │
-# │     ├── Data Extraction                                                     │
-# │     │   🍽️ Lunch Break                                                     │
-# │     ├── Data Quality Assessment                                             │
-# │     │   ☕ Afternoon Break                                                  │
-# │     ├── Data Adjustment                                                     │
-# │     │   🌙 End of Day (for multi-day workshops)                            │
-# │     └── ... (continues for each day)                                        │
-# │  4. Custom Slides                                                           │
-# │  5. Closing Slides                                                          │
-# └─────────────────────────────────────────────────────────────────────────────┘
-#
-# ═══════════════════════════════════════════════════════════════════════════════

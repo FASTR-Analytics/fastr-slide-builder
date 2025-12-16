@@ -576,10 +576,10 @@ def build_workshop_deck(workshop_id, base_dir, output_file=None, skip_confirmati
     config = load_workshop_config(workshop_id, base_dir)
     print("   Config loaded successfully")
 
-    # Step 2: Get sessions (convert legacy format if needed)
-    sessions = convert_legacy_sections(config)
+    # Check if using new deck_order format
+    deck_order = config.get('deck_order')
 
-    # Step 3: Determine number of days
+    # Step 2: Determine number of days
     if override_days:
         num_days = override_days
     else:
@@ -589,8 +589,21 @@ def build_workshop_deck(workshop_id, base_dir, output_file=None, skip_confirmati
         elif num_days is None:
             num_days = 2  # Default for non-interactive mode
 
-    # Step 4: Generate schedule
+    # Step 3: Get sessions list for schedule generation
+    if deck_order:
+        # Extract session names from deck_order (non-.md items except 'agenda')
+        sessions = [item for item in deck_order if not item.endswith('.md') and item != 'agenda']
+    else:
+        # Old format
+        sessions = convert_legacy_sections(config)
+
+    # Step 4: Generate schedule (for break placement)
     schedule = generate_schedule(sessions, num_days, config)
+
+    # Build a lookup for break info by session
+    break_info = {}
+    for entry in schedule:
+        break_info[entry['session']] = entry
 
     # Step 5: Preview and confirm
     if not skip_confirmation:
@@ -623,78 +636,154 @@ paginate: true
         deck_content += ensure_slide_break(title_content) + "\n"
         print(f"   Title slide added")
 
-    # Add agenda if enabled
-    if config.get('include_agenda', False):
-        agenda_path = os.path.join(base_dir, "templates", "agenda.md")
-        agenda_content = read_markdown_file(agenda_path)
-        if agenda_content:
-            agenda_content = strip_frontmatter(agenda_content)
-            agenda_content = substitute_variables(agenda_content, config)
-            deck_content += ensure_slide_break(agenda_content) + "\n"
-            print(f"   Agenda slide added")
-
-    # Workshop directory for custom slides
+    # Workshop and content directories
     workshop_dir = os.path.join(base_dir, "workshops", workshop_id)
-
-    # Add custom slides after agenda (objectives, overview, etc.)
-    deck_content += add_custom_slides_at_position('after_agenda', config, workshop_dir, base_dir)
-
-    # Add sessions with breaks
-    print(f"\nAdding sessions with breaks:")
     core_content_dir = os.path.join(base_dir, "core_content")
 
-    current_day = 0
-    for i, entry in enumerate(schedule):
-        session_id = entry['session']
-        session_info = SESSIONS.get(session_id)
+    # ═══════════════════════════════════════════════════════════════════════
+    # NEW FORMAT: deck_order list
+    # ═══════════════════════════════════════════════════════════════════════
+    if deck_order:
+        print(f"\nAdding slides in order:")
+        current_day = 0
 
-        if not session_info:
-            print(f"   Warning: Unknown session '{session_id}'")
-            continue
+        for item in deck_order:
+            # Check what type of item this is
+            if item == 'agenda':
+                # Agenda slide
+                agenda_path = os.path.join(base_dir, "templates", "agenda.md")
+                agenda_content = read_markdown_file(agenda_path)
+                if agenda_content:
+                    agenda_content = strip_frontmatter(agenda_content)
+                    agenda_content = substitute_variables(agenda_content, config)
+                    deck_content += ensure_slide_break(agenda_content) + "\n"
+                    print(f"   Agenda")
 
-        # Day separator (for multi-day)
-        if entry['day'] != current_day:
-            current_day = entry['day']
-            if num_days > 1:
-                print(f"\n   DAY {current_day}:")
+            elif item.endswith('.md'):
+                # Custom slide from workshop folder
+                custom_path = os.path.join(workshop_dir, item)
+                content = read_markdown_file(custom_path)
+                if content:
+                    content = strip_frontmatter(content)
+                    content = substitute_variables(content, config)
+                    deck_content += "\n" + ensure_slide_break(content) + "\n"
+                    print(f"   {item} (custom)")
 
-        # Add session content
-        for filename in session_info['files']:
-            filepath = os.path.join(core_content_dir, filename)
-            content = read_markdown_file(filepath)
-            if content:
-                content = strip_frontmatter(content)
-                content = substitute_variables(content, config)
-                deck_content += "\n" + ensure_slide_break(content) + "\n"
+            elif item in SESSIONS:
+                # Built-in session
+                session_info = SESSIONS[item]
+                entry = break_info.get(item, {})
 
-        print(f"   {session_info['name']}")
+                # Day separator (for multi-day)
+                if entry.get('day', 1) != current_day:
+                    current_day = entry.get('day', 1)
+                    if num_days > 1:
+                        print(f"\n   DAY {current_day}:")
 
-        # Add custom slides after this session
-        position_key = f"after_{session_id}"
-        deck_content += add_custom_slides_at_position(position_key, config, workshop_dir, base_dir)
+                # Add session content
+                for filename in session_info['files']:
+                    filepath = os.path.join(core_content_dir, filename)
+                    content = read_markdown_file(filepath)
+                    if content:
+                        content = strip_frontmatter(content)
+                        content = substitute_variables(content, config)
+                        deck_content += "\n" + ensure_slide_break(content) + "\n"
 
-        # Add breaks after session
-        if entry.get('tea_after'):
-            deck_content += generate_break_slide('tea', config)
-            print(f"      ☕ Tea break")
+                print(f"   {session_info['name']}")
 
-        if entry.get('lunch_after'):
-            deck_content += generate_break_slide('lunch', config)
-            print(f"      🍽️  Lunch break")
+                # Add breaks after session
+                if entry.get('tea_after'):
+                    deck_content += generate_break_slide('tea', config)
+                    print(f"      ☕ Tea break")
 
-        if entry.get('afternoon_tea_after'):
-            deck_content += generate_break_slide('afternoon_tea', config)
-            print(f"      ☕ Afternoon break")
+                if entry.get('lunch_after'):
+                    deck_content += generate_break_slide('lunch', config)
+                    print(f"      🍽️  Lunch break")
 
-        # Add end-of-day slide
-        if entry.get('end_of_day') and config.get('include_day_end_slides', True):
-            # Get next day's sessions
-            next_day_sessions = [e['session'] for e in schedule if e['day'] == current_day + 1]
-            deck_content += generate_day_end_slide(current_day, next_day_sessions, config)
-            print(f"      🌙 End of Day {current_day}")
+                if entry.get('afternoon_tea_after'):
+                    deck_content += generate_break_slide('afternoon_tea', config)
+                    print(f"      ☕ Afternoon break")
 
-    # Add custom slides before closing (next steps, action items, etc.)
-    deck_content += add_custom_slides_at_position('before_closing', config, workshop_dir, base_dir)
+                # Add end-of-day slide
+                if entry.get('end_of_day') and config.get('include_day_end_slides', True):
+                    next_day_sessions = [e['session'] for e in schedule if e['day'] == current_day + 1]
+                    deck_content += generate_day_end_slide(current_day, next_day_sessions, config)
+                    print(f"      🌙 End of Day {current_day}")
+
+            else:
+                print(f"   Warning: Unknown item '{item}'")
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # OLD FORMAT: sessions + custom_slides
+    # ═══════════════════════════════════════════════════════════════════════
+    else:
+        # Add agenda if enabled
+        if config.get('include_agenda', False):
+            agenda_path = os.path.join(base_dir, "templates", "agenda.md")
+            agenda_content = read_markdown_file(agenda_path)
+            if agenda_content:
+                agenda_content = strip_frontmatter(agenda_content)
+                agenda_content = substitute_variables(agenda_content, config)
+                deck_content += ensure_slide_break(agenda_content) + "\n"
+                print(f"   Agenda slide added")
+
+        # Add custom slides after agenda
+        deck_content += add_custom_slides_at_position('after_agenda', config, workshop_dir, base_dir)
+
+        # Add sessions with breaks
+        print(f"\nAdding sessions with breaks:")
+
+        current_day = 0
+        for i, entry in enumerate(schedule):
+            session_id = entry['session']
+            session_info = SESSIONS.get(session_id)
+
+            if not session_info:
+                print(f"   Warning: Unknown session '{session_id}'")
+                continue
+
+            # Day separator
+            if entry['day'] != current_day:
+                current_day = entry['day']
+                if num_days > 1:
+                    print(f"\n   DAY {current_day}:")
+
+            # Add session content
+            for filename in session_info['files']:
+                filepath = os.path.join(core_content_dir, filename)
+                content = read_markdown_file(filepath)
+                if content:
+                    content = strip_frontmatter(content)
+                    content = substitute_variables(content, config)
+                    deck_content += "\n" + ensure_slide_break(content) + "\n"
+
+            print(f"   {session_info['name']}")
+
+            # Add custom slides after this session
+            position_key = f"after_{session_id}"
+            deck_content += add_custom_slides_at_position(position_key, config, workshop_dir, base_dir)
+
+            # Add breaks
+            if entry.get('tea_after'):
+                deck_content += generate_break_slide('tea', config)
+                print(f"      ☕ Tea break")
+
+            if entry.get('lunch_after'):
+                deck_content += generate_break_slide('lunch', config)
+                print(f"      🍽️  Lunch break")
+
+            if entry.get('afternoon_tea_after'):
+                deck_content += generate_break_slide('afternoon_tea', config)
+                print(f"      ☕ Afternoon break")
+
+            # End-of-day slide
+            if entry.get('end_of_day') and config.get('include_day_end_slides', True):
+                next_day_sessions = [e['session'] for e in schedule if e['day'] == current_day + 1]
+                deck_content += generate_day_end_slide(current_day, next_day_sessions, config)
+                print(f"      🌙 End of Day {current_day}")
+
+        # Add custom slides before closing
+        deck_content += add_custom_slides_at_position('before_closing', config, workshop_dir, base_dir)
 
     # Add closing slide
     if config.get('include_closing', True):
