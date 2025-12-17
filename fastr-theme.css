@@ -1,7 +1,7 @@
 /* ========================================
    FASTR MARP THEME
    ========================================
-   Clean, minimal design with FASTR teal #0f706d as accent
+   Official FASTR brand colors and styling
    Based on FASTR brand guidelines
 */
 
@@ -10,8 +10,38 @@
 @import 'default';
 
 :root {
-  --fastr-teal: #0f706d;
-  --fastr-teal-light: #1a8b86;
+  /* ========================================
+     PRIMARY COLORS
+     ======================================== */
+  --fastr-deep-green: #09544F;
+  --fastr-dark-green: #0C716B;
+  --fastr-green: #1F9A9C;
+  --fastr-lime: #D0CB17;
+  --fastr-navy: #21568C;
+  --fastr-blue: #1A90C0;
+  --fastr-light-blue: #CAE6E9;
+
+  /* ========================================
+     SECONDARY COLORS
+     ======================================== */
+  --fastr-gold: #D8A822;
+  --fastr-purple: #7A1F6E;
+  --fastr-orchid: #BD5091;
+  --fastr-coral: #FF6462;
+
+  /* ========================================
+     THEME ALIASES
+     ======================================== */
+  --fastr-primary: var(--fastr-dark-green);
+  --fastr-primary-dark: var(--fastr-deep-green);
+  --fastr-primary-light: var(--fastr-green);
+  --fastr-accent: var(--fastr-lime);
+  --fastr-warning: var(--fastr-gold);
+  --fastr-error: var(--fastr-coral);
+
+  /* ========================================
+     TEXT & BACKGROUND
+     ======================================== */
   --text-dark: #2c3e50;
   --text-medium: #7f8c8d;
   --text-light: #95a5a6;
@@ -22,7 +52,7 @@
 }
 
 section {
-  background-color: var(--bg-white);  /* use background-color, not background */
+  background-color: var(--bg-white);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: var(--text-dark);
   padding: 60px 80px;
@@ -35,21 +65,21 @@ section {
    HEADERS
    ======================================== */
 h1 {
-  color: var(--fastr-teal);
+  color: var(--fastr-primary);
   font-weight: 700;
   font-size: 2.5em;
   margin-bottom: 0.5em;
-  border-bottom: 4px solid var(--fastr-teal);
+  border-bottom: 4px solid var(--fastr-primary);
   padding-bottom: 0.3em;
 }
 
 h2 {
-  color: var(--fastr-teal);
+  color: var(--fastr-primary);
   font-weight: 600;
   font-size: 1.8em;
   margin-top: 0.8em;
   margin-bottom: 0.5em;
-  border-bottom: 3px solid var(--fastr-teal);
+  border-bottom: 3px solid var(--fastr-primary);
   padding-bottom: 0.2em;
 }
 
@@ -59,7 +89,7 @@ h3 {
   font-size: 1.3em;
   margin-top: 0.8em;
   margin-bottom: 0.4em;
-  border-left: 4px solid var(--fastr-teal);
+  border-left: 4px solid var(--fastr-primary);
   padding-left: 0.5em;
 }
 
@@ -72,7 +102,7 @@ h4, h5, h6 {
    EMPHASIS
    ======================================== */
 strong, b {
-  color: var(--fastr-teal);
+  color: var(--fastr-primary);
   font-weight: 600;
 }
 
@@ -93,21 +123,21 @@ li {
 }
 
 ul > li::marker {
-  color: var(--fastr-teal);
+  color: var(--fastr-primary);
 }
 
 /* ========================================
    LINKS
    ======================================== */
 a {
-  color: var(--fastr-teal);
+  color: var(--fastr-blue);
   text-decoration: none;
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.2s ease;
 }
 
 a:hover {
-  border-bottom: 2px solid var(--fastr-teal);
+  border-bottom: 2px solid var(--fastr-blue);
 }
 
 /* ========================================
@@ -115,7 +145,7 @@ a:hover {
    ======================================== */
 code {
   background: var(--bg-light);
-  color: var(--fastr-teal);
+  color: var(--fastr-navy);
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
@@ -126,7 +156,7 @@ pre {
   background: var(--bg-light);
   padding: 1em;
   border-radius: 6px;
-  border-left: 4px solid var(--fastr-teal);
+  border-left: 4px solid var(--fastr-primary);
   overflow-x: auto;
 }
 
@@ -145,10 +175,10 @@ table {
 }
 
 th {
-  background: var(--bg-light);
-  color: var(--text-dark);
+  background: var(--fastr-light-blue);
+  color: var(--fastr-deep-green);
   font-weight: 600;
-  border-bottom: 2px solid var(--fastr-teal);
+  border-bottom: 2px solid var(--fastr-primary);
   padding: 0.6em;
   text-align: left;
 }
@@ -166,12 +196,12 @@ tr:hover {
    BLOCKQUOTES
    ======================================== */
 blockquote {
-  border-left: 4px solid var(--fastr-teal);
+  border-left: 4px solid var(--fastr-primary);
   padding-left: 1em;
   margin-left: 0;
   color: var(--text-medium);
   font-style: italic;
-  background: var(--bg-light);
+  background: var(--fastr-light-blue);
   padding: 1em 1em 1em 1.5em;
   border-radius: 0 6px 6px 0;
 }
@@ -190,11 +220,11 @@ footer {
    HEADER - CUSTOM POSITIONING
    ======================================== */
 header {
-  color: var(--fastr-teal);
+  color: var(--fastr-primary);
   font-size: 0.7em;
   font-weight: 600;
   text-align: left;
-  border-bottom: 2px solid var(--fastr-teal);
+  border-bottom: 2px solid var(--fastr-primary);
   padding-bottom: 0.5em;
   margin-bottom: 1em;
 }
@@ -203,7 +233,7 @@ header {
    TITLE SLIDE (first slide with h1)
    ======================================== */
 section.lead {
-  background: linear-gradient(135deg, var(--fastr-teal) 0%, var(--fastr-teal-light) 100%);
+  background: linear-gradient(135deg, var(--fastr-deep-green) 0%, var(--fastr-dark-green) 100%);
   color: var(--bg-white);
   text-align: center;
   display: flex;
@@ -213,7 +243,7 @@ section.lead {
 
 section.lead h1 {
   color: var(--bg-white);
-  border-bottom: 4px solid var(--bg-white);
+  border-bottom: 4px solid var(--fastr-lime);
   font-size: 3em;
 }
 
@@ -243,31 +273,51 @@ img {
    SPECIAL CLASSES
    ======================================== */
 
-/* Highlight box */
+/* Highlight box - uses light blue */
 .highlight {
-  background: rgba(15, 112, 109, 0.1);
-  border: 1px solid var(--fastr-teal);
-  border-left: 4px solid var(--fastr-teal);
+  background: var(--fastr-light-blue);
+  border: 1px solid var(--fastr-primary);
+  border-left: 4px solid var(--fastr-primary);
   padding: 1em;
   border-radius: 6px;
   margin: 1em 0;
 }
 
-/* Warning box */
+/* Warning box - uses gold */
 .warning {
-  background: rgba(243, 156, 18, 0.1);
-  border: 1px solid #f39c12;
-  border-left: 4px solid #f39c12;
+  background: rgba(216, 168, 34, 0.15);
+  border: 1px solid var(--fastr-gold);
+  border-left: 4px solid var(--fastr-gold);
   padding: 1em;
   border-radius: 6px;
   margin: 1em 0;
 }
 
-/* Success box */
+/* Error box - uses coral */
+.error {
+  background: rgba(255, 100, 98, 0.15);
+  border: 1px solid var(--fastr-coral);
+  border-left: 4px solid var(--fastr-coral);
+  padding: 1em;
+  border-radius: 6px;
+  margin: 1em 0;
+}
+
+/* Success box - uses lime */
 .success {
-  background: rgba(26, 150, 65, 0.1);
-  border: 1px solid #1a9641;
-  border-left: 4px solid #1a9641;
+  background: rgba(208, 203, 23, 0.15);
+  border: 1px solid var(--fastr-lime);
+  border-left: 4px solid var(--fastr-lime);
+  padding: 1em;
+  border-radius: 6px;
+  margin: 1em 0;
+}
+
+/* Info box - uses blue */
+.info {
+  background: rgba(26, 144, 192, 0.15);
+  border: 1px solid var(--fastr-blue);
+  border-left: 4px solid var(--fastr-blue);
   padding: 1em;
   border-radius: 6px;
   margin: 1em 0;
@@ -284,4 +334,29 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5em;
+}
+
+/* ========================================
+   ACCENT COLORS FOR VARIETY
+   ======================================== */
+
+/* Purple accent header */
+section.purple h1,
+section.purple h2 {
+  color: var(--fastr-purple);
+  border-color: var(--fastr-purple);
+}
+
+/* Blue accent header */
+section.blue h1,
+section.blue h2 {
+  color: var(--fastr-navy);
+  border-color: var(--fastr-navy);
+}
+
+/* Coral accent header */
+section.coral h1,
+section.coral h2 {
+  color: var(--fastr-coral);
+  border-color: var(--fastr-coral);
 }
