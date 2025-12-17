@@ -307,60 +307,77 @@ LEGACY_SECTION_MAP = {
     7: ['facility'],
 }
 
+# Mapping from legacy session names to module prefixes
+SESSION_TO_MODULE = {
+    'intro': 'm0',
+    'questions_indicators': 'm1',
+    'extraction': 'm2',
+    'platform': 'm3',
+    'dq_assessment': 'm4',
+    'dq_adjustment': 'm5',
+    'analysis': 'm6',
+    'disruption': 'm6',  # Part of m6
+    'coverage': 'm6',    # Part of m6
+    'communication': 'm7',
+    'facility': 'm7',    # Optional, but maps to m7 area
+}
+
 # ═══════════════════════════════════════════════════════════════════════
 # SCHEDULE PRESETS
 # ═══════════════════════════════════════════════════════════════════════
 # These define where breaks and day-ends go for 1-5 day workshops
+# Uses module prefixes: m0=Intro, m1=Questions, m2=Extraction, m3=Platform,
+#                       m4=DQA, m5=DQ Adjust, m6=Analysis, m7=Communication
 
 SCHEDULE_PRESETS = {
     1: {  # One-day (condensed)
         'days': {
-            1: ['intro', 'dq_assessment', 'dq_adjustment', 'disruption'],
+            1: ['m0', 'm4', 'm5', 'm6'],
         },
-        'tea_after': ['intro'],
-        'lunch_after': ['dq_assessment'],
-        'afternoon_tea_after': ['dq_adjustment'],
+        'tea_after': ['m0'],
+        'lunch_after': ['m4'],
+        'afternoon_tea_after': ['m5'],
     },
     2: {  # Two-day (standard)
         'days': {
-            1: ['intro', 'extraction', 'dq_assessment', 'dq_adjustment'],
-            2: ['disruption', 'coverage'],
+            1: ['m0', 'm2', 'm4', 'm5'],
+            2: ['m6'],
         },
-        'tea_after': ['intro', 'disruption'],
-        'lunch_after': ['extraction'],
-        'afternoon_tea_after': ['dq_assessment'],
+        'tea_after': ['m0', 'm6'],
+        'lunch_after': ['m2'],
+        'afternoon_tea_after': ['m4'],
     },
     3: {  # Three-day (comprehensive)
         'days': {
-            1: ['intro', 'extraction', 'dq_assessment'],
-            2: ['dq_adjustment', 'disruption'],
-            3: ['coverage', 'facility'],
+            1: ['m0', 'm2', 'm4'],
+            2: ['m5', 'm6'],
+            3: ['m7'],
         },
-        'tea_after': ['intro', 'dq_adjustment', 'coverage'],
-        'lunch_after': ['extraction', 'disruption'],
-        'afternoon_tea_after': ['dq_assessment'],
+        'tea_after': ['m0', 'm5', 'm7'],
+        'lunch_after': ['m2', 'm6'],
+        'afternoon_tea_after': ['m4'],
     },
     4: {  # Four-day (extended)
         'days': {
-            1: ['intro', 'questions_indicators'],
-            2: ['extraction', 'dq_assessment'],
-            3: ['dq_adjustment', 'disruption'],
-            4: ['coverage', 'communication'],
+            1: ['m0', 'm1'],
+            2: ['m2', 'm4'],
+            3: ['m5', 'm6'],
+            4: ['m7'],
         },
-        'tea_after': ['intro', 'extraction', 'dq_adjustment', 'coverage'],
-        'lunch_after': ['questions_indicators', 'dq_assessment', 'disruption'],
+        'tea_after': ['m0', 'm2', 'm5', 'm7'],
+        'lunch_after': ['m1', 'm4', 'm6'],
         'afternoon_tea_after': [],
     },
     5: {  # Five-day (full curriculum)
         'days': {
-            1: ['intro', 'questions_indicators'],
-            2: ['extraction', 'platform'],
-            3: ['dq_assessment', 'dq_adjustment'],
-            4: ['analysis', 'disruption'],
-            5: ['coverage', 'communication', 'facility'],
+            1: ['m0', 'm1'],
+            2: ['m2', 'm3'],
+            3: ['m4', 'm5'],
+            4: ['m6'],
+            5: ['m7'],
         },
-        'tea_after': ['intro', 'extraction', 'dq_assessment', 'analysis', 'coverage'],
-        'lunch_after': ['questions_indicators', 'platform', 'dq_adjustment', 'disruption', 'communication'],
+        'tea_after': ['m0', 'm2', 'm4', 'm6', 'm7'],
+        'lunch_after': ['m1', 'm3', 'm5'],
         'afternoon_tea_after': [],
     },
 }
@@ -554,40 +571,57 @@ def prompt_for_days(config):
             sys.exit(0)
 
 
+def normalize_to_module(session_id):
+    """Convert a session ID to its module prefix for schedule matching"""
+    # Already a module prefix
+    if is_module_prefix(session_id):
+        # For specific topics like m4_2, return the module (m4)
+        if '_' in session_id:
+            return session_id.split('_')[0]
+        return session_id
+    # Legacy session name - look up mapping
+    return SESSION_TO_MODULE.get(session_id, session_id)
+
+
 def generate_schedule(sessions, num_days, config):
     """Generate a schedule based on sessions and number of days"""
     preset = SCHEDULE_PRESETS.get(num_days, SCHEDULE_PRESETS[2])
 
-    # Filter preset to only include sessions that are selected
-    schedule = []
-    current_day = 1
+    # Normalize sessions to module prefixes for matching
+    session_modules = {s: normalize_to_module(s) for s in sessions}
+    modules_in_use = set(session_modules.values())
 
-    for day_num, day_sessions in preset['days'].items():
+    # Filter preset to only include modules that are selected
+    schedule = []
+
+    for day_num, day_modules in preset['days'].items():
         if day_num > num_days:
             break
 
-        for session_id in day_sessions:
-            if session_id in sessions:
+        for module_id in day_modules:
+            # Find sessions that map to this module
+            matching_sessions = [s for s, m in session_modules.items() if m == module_id]
+            for session_id in matching_sessions:
                 entry = {
                     'session': session_id,
                     'day': day_num,
-                    'tea_after': session_id in preset.get('tea_after', []),
-                    'lunch_after': session_id in preset.get('lunch_after', []),
-                    'afternoon_tea_after': session_id in preset.get('afternoon_tea_after', []),
+                    'tea_after': module_id in preset.get('tea_after', []),
+                    'lunch_after': module_id in preset.get('lunch_after', []),
+                    'afternoon_tea_after': module_id in preset.get('afternoon_tea_after', []),
                 }
                 schedule.append(entry)
 
-    # Add any sessions not in preset at the end
+    # Add any sessions not matched to preset at the end
+    scheduled_sessions = {e['session'] for e in schedule}
     for session_id in sessions:
-        if not any(e['session'] == session_id for e in schedule):
-            if session_id in SESSIONS:
-                schedule.append({
-                    'session': session_id,
-                    'day': num_days,
-                    'tea_after': False,
-                    'lunch_after': False,
-                    'afternoon_tea_after': False,
-                })
+        if session_id not in scheduled_sessions:
+            schedule.append({
+                'session': session_id,
+                'day': num_days,
+                'tea_after': False,
+                'lunch_after': False,
+                'afternoon_tea_after': False,
+            })
 
     # Mark end-of-day for multi-day workshops
     if num_days > 1:

@@ -217,16 +217,6 @@ We'll resume at 10:45 AM
 
 ---
 
-# See You Tomorrow!
-
-**Day 1 Complete**
-
-We resume tomorrow at **9:00 AM**
-
-**Tomorrow:** Extraction
-
----
-
 
 # National Health Priorities
 
@@ -413,21 +403,11 @@ Both tools produce CSVs that are compatible with the FASTR platform when correct
 ---
 
 
-# Tea Break
+# Lunch Break
 
-**15 minutes**
+**60 minutes**
 
-We'll resume at 10:45 AM
-
----
-
-# See You Tomorrow!
-
-**Day 2 Complete**
-
-We resume tomorrow at **9:00 AM**
-
-**Tomorrow:** DQ Assessment, DQ Adjustment
+We'll resume at 1:00 PM
 
 ---
 
@@ -682,11 +662,21 @@ This section will cover:
 ---
 
 
-# Tea Break
+# Afternoon Break
 
 **15 minutes**
 
-We'll resume at 10:45 AM
+We'll resume at 3:30 PM
+
+---
+
+# See You Tomorrow!
+
+**Day 1 Complete**
+
+We resume tomorrow at **9:00 AM**
+
+**Tomorrow:** DQ Adjustment, Disruption, Coverage
 
 ---
 
@@ -1020,21 +1010,11 @@ This section will cover:
 ---
 
 
-# Lunch Break
+# Tea Break
 
-**60 minutes**
+**15 minutes**
 
-We'll resume at 1:00 PM
-
----
-
-# See You Tomorrow!
-
-**Day 3 Complete**
-
-We resume tomorrow at **9:00 AM**
-
-**Tomorrow:** Disruption
+We'll resume at 10:45 AM
 
 ---
 
@@ -1428,16 +1408,6 @@ Detecting when health services are disrupted and measuring the impact
 **60 minutes**
 
 We'll resume at 1:00 PM
-
----
-
-# See You Tomorrow!
-
-**Day 4 Complete**
-
-We resume tomorrow at **9:00 AM**
-
-**Tomorrow:** Coverage
 
 ---
 
@@ -1992,11 +1962,11 @@ Total Error = Sum of squared errors across all survey years
 ---
 
 
-# Tea Break
+# Lunch Break
 
-**15 minutes**
+**60 minutes**
 
-We'll resume at 10:45 AM
+We'll resume at 1:00 PM
 
 ---
 
