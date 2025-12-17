@@ -104,13 +104,6 @@ def main():
     except:
         workshop_days = 2
 
-    # Country-specific assets
-    print("\n4. COUNTRY-SPECIFIC OUTPUTS\n")
-    print("   If you have FASTR analysis outputs for this country,")
-    print("   you can add them to replace the default visualizations.\n")
-    has_country_assets = get_input("   Do you have country FASTR outputs? (y/n)", "n")
-    create_assets_folder = has_country_assets.lower() == 'y'
-
     # Create the workshop folder
     print("\n" + "-" * 70)
     print("\nCreating workshop folder...")
@@ -133,10 +126,9 @@ def main():
     print("   + agenda.png (placeholder - replace with yours)")
 
     # Create assets folder for country-specific outputs
-    if create_assets_folder:
-        assets_dir = os.path.join(workshop_dir, "assets", "fastr-outputs")
-        os.makedirs(assets_dir, exist_ok=True)
-        print("   + assets/fastr-outputs/ (add your country outputs here)")
+    assets_dir = os.path.join(workshop_dir, "assets", "fastr-outputs")
+    os.makedirs(assets_dir, exist_ok=True)
+    print("   + assets/fastr-outputs/ (for your country visualizations)")
 
     # Generate config.py
     config_content = f'''"""
@@ -335,13 +327,9 @@ To use your own FASTR outputs instead of defaults:
     print(f"\n      python3 tools/02_check_workshop.py --workshop {workshop_id}")
     print(f"      python3 tools/03_build_deck.py --workshop {workshop_id}")
 
-    if create_assets_folder:
-        print(f"\n   Country outputs:")
-        print(f"   Copy your FASTR outputs to assets/fastr-outputs/")
-        print(f"   They will automatically override the default visualizations.")
-    else:
-        print(f"\n   Tip: To add country-specific visualizations later,")
-        print(f"        create assets/fastr-outputs/ and add your PNGs there.")
+    print(f"\n   Country visualizations:")
+    print(f"   Add your FASTR outputs to assets/fastr-outputs/")
+    print(f"   They'll automatically replace the default charts in slides.")
 
     print("\n" + "=" * 70 + "\n")
 
