@@ -107,7 +107,7 @@ Coverage = (Services Delivered / Target Population) × 100%
 - Expected births: 300,000 × 0.032 = 9,600
 - Add ~5% for pregnancy losses = **~10,000 pregnancies**
 
-**Both approaches should give similar results.** FASTR tests multiple denominators and selects the one closest to survey values (see Step 3).
+FASTR tests multiple denominators and selects the one closest to survey values (see Step 3).
 
 ---
 
