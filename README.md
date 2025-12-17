@@ -136,6 +136,20 @@ Reference in slides:
 ![](../assets/diagrams/data-flow.svg)         # from core_content/
 ```
 
+### Country-Specific Asset Overrides
+
+To use your own FASTR outputs instead of the defaults, create an `assets/` folder in your workshop:
+
+```
+workshops/2025-nigeria/
+  assets/
+    fastr-outputs/
+      m1_Proportion_of_completed_records.png   # Your country output
+      m2_Volume_change.png                     # Your country output
+```
+
+The build script automatically detects and uses workshop-specific assets when they exist, falling back to the shared defaults otherwise.
+
 ## Built-in Sessions
 
 Use these session IDs in your `deck_order`:

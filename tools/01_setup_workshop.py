@@ -104,6 +104,13 @@ def main():
     except:
         workshop_days = 2
 
+    # Country-specific assets
+    print("\n4. COUNTRY-SPECIFIC OUTPUTS\n")
+    print("   If you have FASTR analysis outputs for this country,")
+    print("   you can add them to replace the default visualizations.\n")
+    has_country_assets = get_input("   Do you have country FASTR outputs? (y/n)", "n")
+    create_assets_folder = has_country_assets.lower() == 'y'
+
     # Create the workshop folder
     print("\n" + "-" * 70)
     print("\nCreating workshop folder...")
@@ -125,6 +132,12 @@ def main():
     open(agenda_path, 'w').close()  # Create empty file
     print("   + agenda.png (placeholder - replace with yours)")
 
+    # Create assets folder for country-specific outputs
+    if create_assets_folder:
+        assets_dir = os.path.join(workshop_dir, "assets", "fastr-outputs")
+        os.makedirs(assets_dir, exist_ok=True)
+        print("   + assets/fastr-outputs/ (add your country outputs here)")
+
     # Generate config.py
     config_content = f'''"""
 ═══════════════════════════════════════════════════════════════════════════════
@@ -136,7 +149,7 @@ Location: {location}
 Date: {date}
 
 To build your deck, run:
-    python3 tools/02_build_deck.py --workshop {workshop_id}
+    python3 tools/03_build_deck.py --workshop {workshop_id}
 
 ═══════════════════════════════════════════════════════════════════════════════
 """
@@ -283,14 +296,25 @@ WORKSHOP_CONFIG = {{
 ## To build your deck
 
 ```bash
-python3 tools/02_build_deck.py --workshop {workshop_id}
+# Optional: Check setup first
+python3 tools/02_check_workshop.py --workshop {workshop_id}
+
+# Build the deck
+python3 tools/03_build_deck.py --workshop {workshop_id}
 ```
 
 ## To convert to PowerPoint
 
 ```bash
-python3 tools/03_convert_to_pptx.py outputs/{workshop_id}_deck.md
+python3 tools/04_convert_to_pptx.py outputs/{workshop_id}_deck.md
 ```
+
+## Country-specific assets
+
+To use your own FASTR outputs instead of defaults:
+1. Create `assets/fastr-outputs/` in this folder
+2. Copy your PNG files with the same names as the defaults
+3. The build script will automatically use your versions
 '''
 
     readme_path = os.path.join(workshop_dir, "README.md")
@@ -306,11 +330,19 @@ python3 tools/03_convert_to_pptx.py outputs/{workshop_id}_deck.md
     print(f"\n   Next steps:")
     print(f"   1. Edit the custom slide .md files with your content")
     print(f"   2. Replace agenda.png with your agenda image")
-    print(f"   3. Comment out any slides you don't need in config.py")
-    print(f"   4. Build your deck:")
-    print(f"\n      python3 tools/02_build_deck.py --workshop {workshop_id}")
-    print(f"\n   Tip: Shared images go in assets/ subfolders (logos/, diagrams/, screenshots/)")
-    print(f"        Reference them as: ![](../../assets/logos/logo.png)")
+    print(f"   3. Fill in country_data in config.py")
+    print(f"   4. Check and build:")
+    print(f"\n      python3 tools/02_check_workshop.py --workshop {workshop_id}")
+    print(f"      python3 tools/03_build_deck.py --workshop {workshop_id}")
+
+    if create_assets_folder:
+        print(f"\n   Country outputs:")
+        print(f"   Copy your FASTR outputs to assets/fastr-outputs/")
+        print(f"   They will automatically override the default visualizations.")
+    else:
+        print(f"\n   Tip: To add country-specific visualizations later,")
+        print(f"        create assets/fastr-outputs/ and add your PNGs there.")
+
     print("\n" + "=" * 70 + "\n")
 
 

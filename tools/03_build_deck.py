@@ -436,6 +436,60 @@ def substitute_variables(content, config, extra_vars=None):
     return result
 
 
+def resolve_asset_overrides(content, workshop_id, base_dir):
+    """
+    Check for workshop-specific asset overrides and rewrite paths.
+
+    If a workshop has assets/fastr-outputs/m1_completeness.png,
+    it will override the default assets/fastr-outputs/m1_completeness.png.
+
+    Paths in content like ../assets/X are rewritten to ../workshops/{id}/assets/X
+    if the override exists.
+    """
+    import re
+
+    workshop_assets_dir = os.path.join(base_dir, "workshops", workshop_id, "assets")
+
+    if not os.path.exists(workshop_assets_dir):
+        return content, []  # No workshop assets folder, no overrides
+
+    overrides_applied = []
+
+    # Find all image references: ![...](path)
+    def replace_if_override(match):
+        full_match = match.group(0)
+        alt_text = match.group(1)
+        original_path = match.group(2)
+
+        # Only process paths that reference shared assets
+        if '../assets/' not in original_path and 'assets/' not in original_path:
+            return full_match
+
+        # Extract the relative path within assets/
+        if '../assets/' in original_path:
+            assets_rel = original_path.split('../assets/', 1)[1]
+        elif original_path.startswith('assets/'):
+            assets_rel = original_path[7:]  # Remove 'assets/'
+        else:
+            return full_match
+
+        # Check if workshop has an override
+        override_path = os.path.join(workshop_assets_dir, assets_rel)
+        if os.path.exists(override_path):
+            # Rewrite to workshop-specific path
+            new_path = f"../workshops/{workshop_id}/assets/{assets_rel}"
+            overrides_applied.append(assets_rel)
+            return f"![{alt_text}]({new_path})"
+
+        return full_match
+
+    # Pattern to match ![alt](path) including paths with parentheses
+    pattern = r'!\[([^\]]*)\]\((.*?\.(?:png|jpg|jpeg|gif|svg|webp))\)'
+    content = re.sub(pattern, replace_if_override, content, flags=re.IGNORECASE)
+
+    return content, overrides_applied
+
+
 def read_markdown_file(filepath):
     """Read a markdown file and return its content"""
     try:
@@ -686,15 +740,20 @@ paginate: true
                         print(f"\n   DAY {current_day}:")
 
                 # Add session content
+                session_overrides = []
                 for filename in session_info['files']:
                     filepath = os.path.join(core_content_dir, filename)
                     content = read_markdown_file(filepath)
                     if content:
                         content = strip_frontmatter(content)
                         content = substitute_variables(content, config)
+                        content, overrides = resolve_asset_overrides(content, workshop_id, base_dir)
+                        session_overrides.extend(overrides)
                         deck_content += "\n" + ensure_slide_break(content) + "\n"
 
                 print(f"   {session_info['name']}")
+                if session_overrides:
+                    print(f"      📊 {len(session_overrides)} custom asset(s)")
 
                 # Add breaks after session
                 if entry.get('tea_after'):
@@ -754,15 +813,20 @@ paginate: true
                     print(f"\n   DAY {current_day}:")
 
             # Add session content
+            session_overrides = []
             for filename in session_info['files']:
                 filepath = os.path.join(core_content_dir, filename)
                 content = read_markdown_file(filepath)
                 if content:
                     content = strip_frontmatter(content)
                     content = substitute_variables(content, config)
+                    content, overrides = resolve_asset_overrides(content, workshop_id, base_dir)
+                    session_overrides.extend(overrides)
                     deck_content += "\n" + ensure_slide_break(content) + "\n"
 
             print(f"   {session_info['name']}")
+            if session_overrides:
+                print(f"      📊 {len(session_overrides)} custom asset(s)")
 
             # Add custom slides after this session
             position_key = f"after_{session_id}"
