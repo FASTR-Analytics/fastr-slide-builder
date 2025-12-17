@@ -98,6 +98,12 @@ This prevents gaps from creating false "drops" in service delivery.
 
 ---
 
+## Volume Change: FASTR Output
+
+![Volume Change Due to DQ Adjustments](../assets/fastr-outputs/m2_Volume_change_due_to_data_quality_adjustments.png)
+
+---
+
 ## How to Use Data Quality Information
 
 ---
