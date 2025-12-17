@@ -6,10 +6,11 @@ Images and assets used across workshop decks.
 
 ```
 assets/
-  logos/        ← FASTR logo, WHO logo, partner logos
-  diagrams/     ← Methodology flowcharts, data flow diagrams
-  screenshots/  ← DHIS2 screenshots, platform UI
-  charts/       ← Example charts, visualizations
+  logos/          ← FASTR logo, WHO logo, partner logos
+  diagrams/       ← Methodology flowcharts, data flow diagrams
+  screenshots/    ← DHIS2 screenshots, platform UI
+  charts/         ← Example charts, visualizations
+  fastr-outputs/  ← Default FASTR visualizations (coverage charts, DQ heatmaps, etc.)
 ```
 
 ## Usage in Slides
