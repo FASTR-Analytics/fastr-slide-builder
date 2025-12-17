@@ -108,9 +108,10 @@ def find_images_in_file(filepath):
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
+        # Remove HTML comments (they may contain commented-out images)
+        content = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)
         # Find ![alt](path) patterns
         # Handle paths that may contain parentheses by matching until image extension + )
-        # Use greedy match .* to capture everything up to the extension
         pattern = r'!\[[^\]]*\]\((.*?\.(?:png|jpg|jpeg|gif|svg|webp))\)'
         matches = re.findall(pattern, content, re.IGNORECASE)
         images.extend(matches)
