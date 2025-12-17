@@ -11,6 +11,7 @@ Checks your workshop setup for common issues before building:
 Usage:
     python3 tools/02_check_workshop.py              # Interactive mode
     python3 tools/02_check_workshop.py --workshop 2025-nigeria
+═══════════════════════════════════════════════════════════════════════
 """
 
 import os
