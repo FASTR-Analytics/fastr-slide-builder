@@ -14,16 +14,19 @@ The FASTR Slide Builder helps you create country-specific workshop presentations
 
 ## Quick Start
 
-### 3-Step Workflow
+### 4-Step Workflow
 
 ```bash
 # 1. Set up a new workshop (interactive)
 python3 tools/01_setup_workshop.py
 
-# 2. Build the slide deck
-python3 tools/02_build_deck.py
+# 2. Check your setup (optional but recommended)
+python3 tools/02_check_workshop.py
 
-# 3. Export to PDF (recommended)
+# 3. Build the slide deck
+python3 tools/03_build_deck.py
+
+# 4. Export to PDF (recommended)
 marp outputs/YOUR-WORKSHOP_deck.md --theme-set fastr-theme.css --pdf
 ```
 
@@ -80,8 +83,9 @@ Requires: Python 3.7+, Node.js, Marp CLI. [Installation guide](docs/local-setup.
 fastr-slide-builder/
 ├── tools/                  # Build scripts
 │   ├── 01_setup_workshop.py    # Create new workshop (interactive)
-│   ├── 02_build_deck.py        # Assemble markdown deck
-│   └── 03_convert_to_pptx.py   # Export to PowerPoint (optional)
+│   ├── 02_check_workshop.py    # Validate setup before building
+│   ├── 03_build_deck.py        # Assemble markdown deck
+│   └── 04_convert_to_pptx.py   # Export to PowerPoint (optional)
 │
 ├── templates/              # Reusable slide templates
 │   ├── title_slide.md
@@ -156,9 +160,10 @@ Use these session IDs in your `deck_order`:
    - `*.md` files - Custom slides with your content
    - `agenda.png` - Your workshop agenda image
 
-3. **Build and export:**
+3. **Check and build:**
    ```bash
-   python3 tools/02_build_deck.py
+   python3 tools/02_check_workshop.py   # Validates your setup
+   python3 tools/03_build_deck.py       # Builds the deck
    marp outputs/YOUR-WORKSHOP_deck.md --theme-set fastr-theme.css --pdf
    ```
 
@@ -168,17 +173,20 @@ Use these session IDs in your `deck_order`:
 # Create new workshop (interactive wizard)
 python3 tools/01_setup_workshop.py
 
+# Check workshop setup (catches common issues)
+python3 tools/02_check_workshop.py
+
 # Build deck (interactive - shows all workshops)
-python3 tools/02_build_deck.py
+python3 tools/03_build_deck.py
 
 # Build specific workshop (non-interactive)
-python3 tools/02_build_deck.py --workshop 2025-nigeria
+python3 tools/03_build_deck.py --workshop 2025-nigeria
 
 # Export to PDF (recommended)
 marp outputs/2025-nigeria_deck.md --theme-set fastr-theme.css --pdf
 
 # Export to PowerPoint (alternative)
-python3 tools/03_convert_to_pptx.py outputs/2025-nigeria_deck.md
+python3 tools/04_convert_to_pptx.py outputs/2025-nigeria_deck.md
 ```
 
 ## PDF vs PowerPoint

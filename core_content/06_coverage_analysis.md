@@ -12,20 +12,18 @@ Understanding what percentage of people are being reached
 
 ## Why Estimate Coverage?
 
-**Service numbers alone don't tell the full story:**
+**Service numbers alone don't tell the full story**
 
-- Province A: 10,000 ANC visits
-- Province B: 5,000 ANC visits
+| Province | ANC Visits | Pregnancies | Coverage |
+|----------|------------|-------------|----------|
+| Province A | 10,000 | 20,000 | **50%** |
+| Province B | 5,000 | 6,000 | **83%** |
 
-**Which is doing better?** We can't tell without knowing population size!
+Province B delivers fewer services but reaches a **higher proportion** of its population.
 
-**If Province A has:**
-- 20,000 pregnancies → 50% coverage (half of pregnant women reached)
+Without knowing the target population, we might wrongly assume Province A is performing better because it has more visits.
 
-**If Province B has:**
-- 6,000 pregnancies → 83% coverage (most pregnant women reached)
-
-**Coverage shows whether services are reaching their target population.**
+**Coverage = Services ÷ Target Population**
 
 ---
 
