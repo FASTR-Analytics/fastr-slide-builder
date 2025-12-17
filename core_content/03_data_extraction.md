@@ -113,7 +113,7 @@ When data are prepared using the Downloader, API script, or DHIS2 exports, the C
 ## Data format and granularity
 <br>
 
-![hmis_data_raw](../assets/input_data.png)
+![hmis_data_raw](../assets/screenshots/hmis-csv-required-fields.png)
 
 ---
 ## How Much Data?

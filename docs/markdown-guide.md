@@ -198,15 +198,15 @@ marp outputs/nigeria_deck.md --theme-set fastr-theme.css --pdf
 
 **Example:**
 ```markdown
-![FASTR Logo](../assets/fastr_logo.png)
-![Workflow Diagram](../assets/workflow.svg)
+![FASTR Approach](../assets/diagrams/FASTR_rapid_cycle_analytics_approach.svg)
+![HMIS Data](../assets/screenshots/hmis-csv-required-fields.png)
 ```
 
 ### Image Paths
 
 **For images in `assets/` folder:**
 ```markdown
-![FASTR Approach](../assets/FASTR_rapid_cycle_analytics_approach.svg)
+![FASTR Approach](../assets/diagrams/FASTR_rapid_cycle_analytics_approach.svg)
 ```
 
 **For images in workshop folder:**
@@ -364,7 +364,8 @@ paginate: true
 **Location:** Abuja, Nigeria
 **Facilitators:** Dr. Smith, Dr. Jones
 
-![FASTR Logo](../assets/fastr_logo.png)
+<!-- ![FASTR Logo](../assets/logos/fastr_logo.png) -->
+<!-- Note: Add logo to assets/logos/ folder -->
 ```
 
 ### Example 2: Content Slide with Lists
@@ -394,7 +395,7 @@ paginate: true
 
 # FASTR Workflow
 
-![FASTR Process](../assets/workflow_diagram.svg)
+![FASTR Process](../assets/diagrams/FASTR_rapid_cycle_analytics_approach.svg)
 
 **Four main stages:** Data Extraction → Quality Assessment → Analysis → Insights
 ```
@@ -462,11 +463,13 @@ paginate: true
 **Wrong:**
 ```markdown
 ![Logo](assets/logo.png)  <!-- Missing ../ -->
+![Diagram](../assets/old_file.png)  <!-- File moved to subfolder -->
 ```
 
 **Right:**
 ```markdown
-![Logo](../assets/logo.png)
+![Logo](../assets/logos/logo.png)  <!-- Use subfolder structure -->
+![Diagram](../assets/diagrams/FASTR_rapid_cycle_analytics_approach.svg)
 ```
 
 ### 4. Too Much Content on One Slide

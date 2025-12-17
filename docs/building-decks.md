@@ -488,7 +488,7 @@ cp outputs/2025_01_nigeria_deck.pdf ~/Desktop/
 
 **Images don't appear in PDF**
 - Check image paths in markdown
-- Use `../assets/` for shared images
+- Use `../assets/subfolder/` for shared images (e.g., `../assets/diagrams/`, `../assets/screenshots/`)
 - Use relative paths for workshop images
 - Verify images exist at specified paths
 
@@ -570,7 +570,7 @@ marp --preview outputs/DECK.md --theme-set fastr-theme.css
 - **Workshop configs:** `workshops/WORKSHOP_ID/config.py`
 - **Custom slides:** `workshops/WORKSHOP_ID/custom_slides.md`
 - **Workshop images:** `workshops/WORKSHOP_ID/*.png`
-- **Shared images:** `assets/*.png`
+- **Shared images:** `assets/logos/`, `assets/diagrams/`, `assets/screenshots/`
 - **Core content:** `core_content/*.md`
 - **Output decks:** `outputs/*.md` (markdown)
 - **Output PDFs:** `outputs/*.pdf`

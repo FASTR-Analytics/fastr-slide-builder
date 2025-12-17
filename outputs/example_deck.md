@@ -11,7 +11,8 @@ paginate: true
 **Location:** Capital City, Country
 **Facilitators:** Dr. Smith, Dr. Jones
 
-![FASTR Logo](../assets/fastr_logo.png)
+<!-- ![FASTR Logo](../assets/logos/fastr_logo.png) -->
+<!-- TODO: Add FASTR logo to assets/logos/ folder -->
 
 ---
 
@@ -93,7 +94,7 @@ A data-driven framework developed by the GFF to help countries monitor and impro
 
 FASTR strengthens the use of routine health facility data by applying standardized methods for data quality assessment, trend analysis, coverage estimation, and decision-focused interpretation.
 
-![FASTR Approach](../assets/FASTR_rapid_cycle_analytics_approach.svg)
+![FASTR Approach](../assets/diagrams/FASTR_rapid_cycle_analytics_approach.svg)
 
 ---
 ### FASTR supports governments to:
@@ -331,7 +332,7 @@ When data are prepared using the Downloader, API script, or DHIS2 exports, the C
 ## Data format and granularity
 <br>
 
-![hmis_data_raw](../assets/input_data.png)
+![hmis_data_raw](../assets/screenshots/hmis-csv-required-fields.png)
 
 ---
 ## How Much Data?

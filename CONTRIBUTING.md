@@ -76,7 +76,7 @@ Core content files are reusable FASTR methodology modules used across all worksh
 ### Important Notes
 - Changes affect ALL future workshops using these sections
 - Always test with the example workshop before committing
-- Use `../assets/` for image paths in core content
+- Use `../assets/subfolder/` for image paths in core content (e.g., `../assets/diagrams/`, `../assets/screenshots/`)
 
 ---
 
@@ -332,14 +332,14 @@ git push
 
 **To core content:**
 ```bash
-# Add to assets
-cp ~/Desktop/diagram.png assets/
+# Add to assets (use appropriate subfolder)
+cp ~/Desktop/diagram.png assets/diagrams/
 
-# Reference in markdown
-# ![Description](../assets/diagram.png)
+# Reference in markdown with subfolder
+# ![Description](../assets/diagrams/diagram.png)
 
 # Commit both
-git add assets/diagram.png core_content/02_fastr_approach.md
+git add assets/diagrams/diagram.png core_content/02_fastr_approach.md
 git commit -m "Add FASTR approach diagram"
 ```
 

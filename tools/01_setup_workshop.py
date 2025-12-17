@@ -309,8 +309,8 @@ python3 tools/03_convert_to_pptx.py outputs/{workshop_id}_deck.md
     print(f"   3. Comment out any slides you don't need in config.py")
     print(f"   4. Build your deck:")
     print(f"\n      python3 tools/02_build_deck.py --workshop {workshop_id}")
-    print(f"\n   Tip: Shared images (logos, diagrams) go in assets/")
-    print(f"        Reference them as: ![](../../assets/logo.png)")
+    print(f"\n   Tip: Shared images go in assets/ subfolders (logos/, diagrams/, screenshots/)")
+    print(f"        Reference them as: ![](../../assets/logos/logo.png)")
     print("\n" + "=" * 70 + "\n")
 
 
