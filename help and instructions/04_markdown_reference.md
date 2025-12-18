@@ -1,6 +1,86 @@
-# Marp Markdown Quick Reference Guide
+# Markdown Reference Guide
 
-A scannable cheat sheet for writing FASTR workshop slides using Marp markdown.
+A scannable cheat sheet for writing FASTR content and slides.
+
+---
+
+## FASTR Slide Markers (Our System)
+
+In FASTR, we use special markers to identify which content becomes workshop slides. This is **different from Marp's `---` syntax** - our markers work inside the methodology files.
+
+### Basic Syntax
+
+```markdown
+<!-- SLIDE:slide_id -->
+Content that will become a slide
+<!-- /SLIDE -->
+```
+
+### How It Works
+
+When you edit files in `methodology/`, you wrap slide content with markers:
+
+```markdown
+# Data Quality Assessment
+
+This paragraph is documentation only - it appears on the website
+but NOT in workshop slides.
+
+<!-- SLIDE:m4_1 -->
+## What is DQA?
+
+This content WILL become a slide!
+
+- Completeness checks
+- Outlier detection
+- Consistency validation
+
+![DQA Chart](resources/default_outputs/dqa_chart.png)
+<!-- /SLIDE -->
+
+This paragraph is also documentation only.
+
+<!-- SLIDE:m4_2 -->
+## Completeness
+
+Another slide starts here...
+<!-- /SLIDE -->
+```
+
+### Slide ID Format
+
+Use this pattern: `m{module}_{section}`
+
+| Module | IDs |
+|--------|-----|
+| Module 0 (Introduction) | `m0_1`, `m0_2`, `m0_3` |
+| Module 4 (DQA) | `m4_1`, `m4_2`, `m4_3` |
+| Module 5 (Adjustment) | `m5_1`, `m5_2`, `m5_3` |
+| Module 6a (Utilization) | `m6a_1`, `m6a_2` |
+| Module 6b (Coverage) | `m6b_1`, `m6b_2` |
+| Module 7 (Communication) | `m7_1`, `m7_2` |
+
+### Rules
+
+1. **Unique IDs** - Each slide ID must be unique across all files
+2. **Matching tags** - Every `<!-- SLIDE:xxx -->` needs a `<!-- /SLIDE -->`
+3. **No nesting** - Don't put markers inside other markers
+4. **Images** - Use `resources/...` paths (relative to methodology folder)
+
+### Extracting Slides
+
+After editing, run:
+```bash
+python3 tools/00_extract_slides.py
+```
+
+This pulls out all SLIDE-marked content into `core_content/` for use in workshops.
+
+---
+
+## Marp Slide Syntax (For Workshop Decks)
+
+The content below applies to the **generated workshop decks** (in `outputs/`), not the methodology files.
 
 ## What is a Slide?
 
