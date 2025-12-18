@@ -1,0 +1,28 @@
+{
+  "name": "fastr-slide-builder",
+  "version": "1.0.0",
+  "description": "FASTR methodology slide deck builder using Marp",
+  "scripts": {
+    "build": "python3 tools/03_build_deck.py",
+    "extract": "python3 tools/extract_slides.py",
+    "check": "python3 tools/02_check_workshop.py",
+    "setup-workshop": "python3 tools/01_setup_workshop.py",
+    "convert-pptx": "python3 tools/04_convert_to_pptx.py",
+    "docs": "cd methodology && mkdocs serve",
+    "docs-build": "cd methodology && mkdocs build"
+  },
+  "dependencies": {
+    "@marp-team/marp-cli": "^3.4.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "fastr",
+    "gff",
+    "marp",
+    "slides",
+    "hmis",
+    "health-data"
+  ],
+  "author": "GFF FASTR Team",
+  "license": "MIT"
+}

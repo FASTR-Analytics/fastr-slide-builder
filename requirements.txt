@@ -1,0 +1,20 @@
+# FASTR Slide Builder - Python Dependencies
+
+# MkDocs and plugins for methodology documentation
+mkdocs>=1.5.0
+mkdocs-material>=9.0.0
+mkdocs-bibtex>=2.11.0
+mkdocs-minify-plugin>=0.7.0
+
+# Strip-slides plugin (install separately)
+# cd methodology/plugins && pip install -e .
+
+# Standard library only for tools (no additional deps)
+# - tools/extract_slides.py
+# - tools/01_setup_workshop.py
+# - tools/02_check_workshop.py
+# - tools/03_build_deck.py
+# - tools/04_convert_to_pptx.py
+
+# Optional: for PPTX conversion (libreoffice required separately)
+# LibreOffice must be installed on the system for PDF to PPTX conversion
