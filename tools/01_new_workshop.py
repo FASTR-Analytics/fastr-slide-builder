@@ -303,14 +303,17 @@ def auto_assign_modules_to_days(selected_modules, num_days):
     return days, split_modules
 
 
-def build_daily_schedule(day_items, start_time_mins, tea_time_mins, lunch_time_mins, afternoon_tea_mins):
+def build_daily_schedule(day_items, start_time_mins, tea_time_mins, lunch_time_mins, afternoon_tea_mins, day_num=1):
     """
-    Build a detailed schedule for one day.
+    Build a FULL DAY schedule (9 AM - 5 PM) with content, exercises, and breaks.
     Consolidates consecutive topics from the same module into single entries.
 
     Args:
         day_items: list of dicts with 'id', 'duration', 'mod_num', 'label'
+        day_num: which day (1, 2, etc.) for labeling
     """
+    END_OF_DAY = 17 * 60  # 5:00 PM in minutes
+
     # First, consolidate consecutive items from the same module
     consolidated = []
     i = 0
@@ -335,62 +338,161 @@ def build_daily_schedule(day_items, start_time_mins, tea_time_mins, lunch_time_m
 
     schedule = []
     current_time = start_time_mins
+    content_idx = 0
 
-    items_done = 0
-    total_items = len(consolidated)
+    # Morning session until tea
+    while current_time < tea_time_mins and content_idx < len(consolidated):
+        item = consolidated[content_idx]
+        duration = min(item['duration'], tea_time_mins - current_time)
 
-    for item in consolidated:
-        mod_num = item['mod_num']
-        duration = item['duration']
-        session_name = item['name']
-
-        # Add item to schedule with start and end time
         start_str = format_time(current_time)
         end_time = current_time + duration
         end_str = format_time(end_time)
 
         schedule.append({
             'time': f"{start_str} - {end_str}",
-            'session': session_name,
-            'module': f'm{mod_num}',
+            'session': item['name'],
+            'module': f"m{item['mod_num']}",
             'duration': duration
         })
         current_time = end_time
-        items_done += 1
 
-        # Check for tea break
-        if items_done == 1 and current_time >= tea_time_mins - 15 and current_time < lunch_time_mins:
-            tea_end = tea_time_mins + 15
-            schedule.append({
-                'time': f"{format_time(tea_time_mins)} - {format_time(tea_end)}",
-                'session': 'Tea Break',
-                'type': 'break',
-                'duration': 15
-            })
-            current_time = tea_end
+        # If we used the full duration, move to next item
+        if duration >= item['duration']:
+            content_idx += 1
+        else:
+            # Partial - reduce remaining duration
+            consolidated[content_idx]['duration'] -= duration
 
-        # Check for lunch (around midpoint)
-        if current_time >= lunch_time_mins - 30 and current_time < lunch_time_mins + 60:
-            if items_done < total_items:  # Don't add lunch at end
-                lunch_end = lunch_time_mins + 60
-                schedule.append({
-                    'time': f"{format_time(lunch_time_mins)} - {format_time(lunch_end)}",
-                    'session': 'Lunch',
-                    'type': 'break',
-                    'duration': 60
-                })
-                current_time = lunch_end
+    # Tea break
+    tea_end = tea_time_mins + 15
+    schedule.append({
+        'time': f"{format_time(tea_time_mins)} - {format_time(tea_end)}",
+        'session': 'Tea Break',
+        'type': 'break',
+        'duration': 15
+    })
+    current_time = tea_end
 
-        # Check for afternoon tea
-        if current_time >= afternoon_tea_mins - 15 and items_done < total_items:
-            tea_end = afternoon_tea_mins + 15
-            schedule.append({
-                'time': f"{format_time(afternoon_tea_mins)} - {format_time(tea_end)}",
-                'session': 'Afternoon Tea',
-                'type': 'break',
-                'duration': 15
-            })
-            current_time = tea_end
+    # Late morning session until lunch
+    while current_time < lunch_time_mins and content_idx < len(consolidated):
+        item = consolidated[content_idx]
+        duration = min(item['duration'], lunch_time_mins - current_time)
+
+        start_str = format_time(current_time)
+        end_time = current_time + duration
+        end_str = format_time(end_time)
+
+        schedule.append({
+            'time': f"{start_str} - {end_str}",
+            'session': item['name'],
+            'module': f"m{item['mod_num']}",
+            'duration': duration
+        })
+        current_time = end_time
+
+        if duration >= item['duration']:
+            content_idx += 1
+        else:
+            consolidated[content_idx]['duration'] -= duration
+
+    # If time before lunch, add exercises
+    if current_time < lunch_time_mins:
+        schedule.append({
+            'time': f"{format_time(current_time)} - {format_time(lunch_time_mins)}",
+            'session': 'Practical Exercises',
+            'duration': lunch_time_mins - current_time
+        })
+        current_time = lunch_time_mins
+
+    # Lunch
+    lunch_end = lunch_time_mins + 60
+    schedule.append({
+        'time': f"{format_time(lunch_time_mins)} - {format_time(lunch_end)}",
+        'session': 'Lunch',
+        'type': 'break',
+        'duration': 60
+    })
+    current_time = lunch_end
+
+    # Afternoon session until afternoon tea
+    while current_time < afternoon_tea_mins and content_idx < len(consolidated):
+        item = consolidated[content_idx]
+        duration = min(item['duration'], afternoon_tea_mins - current_time)
+
+        start_str = format_time(current_time)
+        end_time = current_time + duration
+        end_str = format_time(end_time)
+
+        schedule.append({
+            'time': f"{start_str} - {end_str}",
+            'session': item['name'],
+            'module': f"m{item['mod_num']}",
+            'duration': duration
+        })
+        current_time = end_time
+
+        if duration >= item['duration']:
+            content_idx += 1
+        else:
+            consolidated[content_idx]['duration'] -= duration
+
+    # If time before afternoon tea, add exercises
+    if current_time < afternoon_tea_mins:
+        schedule.append({
+            'time': f"{format_time(current_time)} - {format_time(afternoon_tea_mins)}",
+            'session': 'Practical Exercises',
+            'duration': afternoon_tea_mins - current_time
+        })
+        current_time = afternoon_tea_mins
+
+    # Afternoon tea
+    tea_end = afternoon_tea_mins + 15
+    schedule.append({
+        'time': f"{format_time(afternoon_tea_mins)} - {format_time(tea_end)}",
+        'session': 'Afternoon Tea',
+        'type': 'break',
+        'duration': 15
+    })
+    current_time = tea_end
+
+    # Late afternoon until end of day
+    while current_time < END_OF_DAY - 15 and content_idx < len(consolidated):
+        item = consolidated[content_idx]
+        duration = min(item['duration'], END_OF_DAY - 15 - current_time)
+
+        start_str = format_time(current_time)
+        end_time = current_time + duration
+        end_str = format_time(end_time)
+
+        schedule.append({
+            'time': f"{start_str} - {end_str}",
+            'session': item['name'],
+            'module': f"m{item['mod_num']}",
+            'duration': duration
+        })
+        current_time = end_time
+
+        if duration >= item['duration']:
+            content_idx += 1
+        else:
+            consolidated[content_idx]['duration'] -= duration
+
+    # Fill remaining time with exercises/group work
+    if current_time < END_OF_DAY - 15:
+        schedule.append({
+            'time': f"{format_time(current_time)} - {format_time(END_OF_DAY - 15)}",
+            'session': 'Group Work & Discussion',
+            'duration': END_OF_DAY - 15 - current_time
+        })
+        current_time = END_OF_DAY - 15
+
+    # Day wrap-up
+    schedule.append({
+        'time': f"{format_time(current_time)} - {format_time(END_OF_DAY)}",
+        'session': 'Day Wrap-up & Q&A',
+        'duration': 15
+    })
 
     return schedule
 
