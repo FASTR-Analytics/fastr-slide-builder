@@ -626,15 +626,21 @@ def main():
     # Auto-assign modules to days (splits long modules automatically)
     days_assignment, split_modules = auto_assign_modules_to_days(selected_modules, num_days)
 
-    print("   Suggested schedule:\n")
+    print("   Suggested schedule (each day is 9:00 AM - 5:00 PM):\n")
     if split_modules:
         split_names = [f"m{m} ({MODULES[m]['short']})" for m in sorted(split_modules)]
         print(f"   Note: Long modules auto-split across days: {', '.join(split_names)}\n")
 
     for day, items in days_assignment.items():
-        labels = [item['label'] for item in items]
-        total_mins = sum(item['duration'] for item in items)
-        print(f"   Day {day}: {', '.join(labels)} - {total_mins} min")
+        # Get unique module names (consolidate split topics)
+        seen_mods = set()
+        labels = []
+        for item in items:
+            mod_num = item['mod_num']
+            if mod_num not in seen_mods:
+                seen_mods.add(mod_num)
+                labels.append(MODULES[mod_num]['short'])
+        print(f"   Day {day}: {', '.join(labels)}")
 
     adjust = input("\n   Adjust this schedule? [y/N]: ").strip().lower()
 
