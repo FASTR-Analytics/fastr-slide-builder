@@ -107,6 +107,7 @@ This text is documentation only again.
 | [02 Building Workshops](02_building_workshops.md) | Creating workshop presentations |
 | [03 Local Setup](03_local_setup.md) | Setting up your computer |
 | [04 Codespaces Setup](04_codespaces_setup.md) | Working in browser (no install needed) |
+| [05 Content Action Plan](05_content_action_plan.md) | Slide content status & tasks to delegate |
 
 ---
 

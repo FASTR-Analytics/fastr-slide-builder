@@ -21,6 +21,7 @@ New to this project? **[Read the Start Here guide](help%20and%20instructions/00_
 | [02 Building Workshops](help%20and%20instructions/02_building_workshops.md) | Create presentations |
 | [03 Local Setup](help%20and%20instructions/03_local_setup.md) | Install on your computer |
 | [04 Codespaces](help%20and%20instructions/04_codespaces_setup.md) | Work in browser (no install) |
+| [05 Content Action Plan](help%20and%20instructions/05_content_action_plan.md) | Slide content status & tasks |
 
 ---
 
