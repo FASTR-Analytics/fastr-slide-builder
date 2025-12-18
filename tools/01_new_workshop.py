@@ -26,6 +26,31 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# AUTO-DETECT AND USE VENV
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def ensure_venv():
+    """Re-execute with venv Python if not already in venv."""
+    # Already in a venv?
+    if sys.prefix != sys.base_prefix:
+        return
+
+    # Find project root (where .venv should be)
+    script_dir = Path(__file__).resolve().parent
+    project_root = script_dir.parent
+
+    # Check for .venv or venv
+    for venv_name in ['.venv', 'venv']:
+        venv_python = project_root / venv_name / 'bin' / 'python3'
+        if venv_python.exists():
+            # Re-execute this script with venv Python
+            os.execv(str(venv_python), [str(venv_python)] + sys.argv)
+
+    # No venv found, continue with system Python (may fail on imports)
+
+ensure_venv()
+
 try:
     import yaml
 except ImportError:
