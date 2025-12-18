@@ -1,5 +1,7 @@
 <div style="text-align: center; margin-bottom: 2em;">
-  <img src="resources/logos/FASTR_Primary_01_FullName.png" alt="FASTR Logo" style="max-width: 600px; width: 100%;">
+
+![FASTR Logo](resources/logos/FASTR_Primary_01_FullName.png){: style="max-width: 600px; width: 100%"}
+
 </div>
 
 # FASTR RMNCAH-N Service Use Monitoring
