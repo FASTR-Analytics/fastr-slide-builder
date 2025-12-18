@@ -58,8 +58,8 @@ theme:
     - navigation.instant          # Instant loading
     - navigation.instant.progress # Progress indicator
     - navigation.tracking         # Anchor tracking
-    - navigation.tabs             # Tabs navigation
-    - navigation.tabs.sticky      # Sticky tabs
+    # - navigation.tabs           # Disabled: use sidebar instead of horizontal tabs
+    # - navigation.tabs.sticky    # Disabled: use sidebar instead
     - navigation.sections         # Navigation sections
     - navigation.expand           # Expand navigation by default
     - navigation.indexes          # Section index pages
