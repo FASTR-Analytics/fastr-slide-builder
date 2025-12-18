@@ -686,9 +686,9 @@ schedule:
   # ─────────────────────────────────────────────────────────────────────
   # Add any of these to your day1 schedule (or other days):
   #
-  #   - time: "8:30 AM - 9:00 AM"
+  #   - time: "8:50 AM - 9:00 AM"
   #     session: Welcome to Country / Opening Prayer
-  #     duration: 30
+  #     duration: 10
   #
   #   - time: "9:00 AM - 9:15 AM"
   #     session: Ministerial Remarks
@@ -698,17 +698,17 @@ schedule:
   #     session: Participant Introductions
   #     duration: 15
   #
-  #   - time: "9:30 AM - 10:00 AM"
+  #   - time: "9:30 AM - 9:45 AM"
   #     session: Icebreaker Activity
-  #     duration: 30
+  #     duration: 15
   #
   #   - time: "12:00 PM"
   #     session: Group Photo
-  #     duration: 15
+  #     duration: 10
   #
-  #   - time: "5:00 PM - 5:30 PM"
+  #   - time: "5:00 PM - 5:15 PM"
   #     session: Daily Reflection & Feedback
-  #     duration: 30
+  #     duration: 15
   # ─────────────────────────────────────────────────────────────────────
 
   agenda:
