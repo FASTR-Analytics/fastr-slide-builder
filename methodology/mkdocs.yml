@@ -25,8 +25,8 @@ nav:
 theme:
   name: material
   language: en
-  logo: ../resources/logos/FASTR_White_FullName.png
-  favicon: ../resources/logos/FASTR_White_FullName.png
+  logo: resources/logos/FASTR_White_FullName.png
+  favicon: resources/logos/FASTR_White_FullName.png
 
   # Color Palette
   palette:
@@ -66,9 +66,8 @@ theme:
     - navigation.top              # Back to top button
     - navigation.footer           # Footer navigation
 
-    # Table of Contents - disabled (hidden via CSS)
-    # - toc.follow
-    # - toc.integrate
+    # Table of Contents
+    - toc.follow              # Highlight current section in TOC
 
     # Search
     - search.suggest              # Search suggestions

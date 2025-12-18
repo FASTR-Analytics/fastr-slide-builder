@@ -183,19 +183,19 @@ The FASTR analysis generates coverage estimate visualizations at multiple geogra
 
 Time series showing coverage estimates calculated from HMIS service volumes at the national level, comparing HMIS-based estimates with survey benchmarks.
 
-![Coverage calculated from HMIS data at national level.](../resources/default_outputs/Module4_1_Coverage_HMIS_National.png)
+![Coverage calculated from HMIS data at national level.](resources/default_outputs/Module4_1_Coverage_HMIS_National.png)
 
 **2. Coverage Calculated from HMIS Data (Admin Area 2)**
 
 Coverage estimates disaggregated to admin area 2 level, enabling identification of subnational variation in service coverage.
 
-![Coverage calculated from HMIS data at admin area 2 level.](../resources/default_outputs/Module4_2_Coverage_HMIS_Admin2.png)
+![Coverage calculated from HMIS data at admin area 2 level.](resources/default_outputs/Module4_2_Coverage_HMIS_Admin2.png)
 
 **3. Coverage Calculated from HMIS Data (Admin Area 3)**
 
 Highly disaggregated coverage estimates at admin area 3 level for detailed geographic analysis where data quality permits.
 
-![Coverage calculated from HMIS data at admin area 3 level.](../resources/default_outputs/Module4_3_Coverage_HMIS_Admin3.png)
+![Coverage calculated from HMIS data at admin area 3 level.](resources/default_outputs/Module4_3_Coverage_HMIS_Admin3.png)
 
 **Interpretation Guide:**
 

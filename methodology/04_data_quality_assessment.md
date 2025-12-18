@@ -130,7 +130,7 @@ The FASTR analysis generates six main visual outputs:
 
 Heatmap table with zones as rows and health indicators as columns, color-coded by outlier percentage.
 
-![Percentage of facility-months that are outliers.](../resources/default_outputs/Default_1._Proportion_of_outliers.png)
+![Percentage of facility-months that are outliers.](resources/default_outputs/Default_1._Proportion_of_outliers.png)
 
 <!-- SLIDE:m4_3 -->
 ## Question 2: Are Numbers Reasonable?
@@ -188,14 +188,14 @@ Are there any values that seem way too high compared to what that facility norma
 
 ## Outliers: FASTR Output
 
-![Outliers](../resources/default_outputs/Default_1._Proportion_of_outliers.png)
+![Outliers](resources/default_outputs/Default_1._Proportion_of_outliers.png)
 <!-- /SLIDE -->
 
 **2. Indicator Completeness**
 
 Heatmap table with zones as rows and health indicators as columns, color-coded by completeness percentage.
 
-![Percentage of facility-months with complete data.](../resources/default_outputs/Default_2._Proportion_of_completed_records.png)
+![Percentage of facility-months with complete data.](resources/default_outputs/Default_2._Proportion_of_completed_records.png)
 
 <!-- SLIDE:m4_2 -->
 ## Question 1: Are Facilities Reporting?
@@ -233,20 +233,20 @@ Each month, are facilities sending in their reports?
 
 ## Completeness: FASTR Output
 
-![Indicator Completeness](../resources/default_outputs/Default_2._Proportion_of_completed_records.png)
+![Indicator Completeness](resources/default_outputs/Default_2._Proportion_of_completed_records.png)
 <!-- /SLIDE -->
 
 **3. Indicator Completeness Over Time**
 
 Horizontal timeline charts showing completeness trends for each indicator over the analysis period.
 
-![Percentage of facility-months with complete data over time.](../resources/default_outputs/Default_3._Proportion_of_completed_records_over_time.png)
+![Percentage of facility-months with complete data over time.](resources/default_outputs/Default_3._Proportion_of_completed_records_over_time.png)
 
 **4. Internal Consistency**
 
 Heatmap table with zones as rows and consistency benchmark categories as columns, color-coded by performance.
 
-![Percentage of sub-national areas meeting consistency benchmarks.](../resources/default_outputs/Default_4._Proportion_of_sub-national_areas_meeting_consistency_criteria.png)
+![Percentage of sub-national areas meeting consistency benchmarks.](resources/default_outputs/Default_4._Proportion_of_sub-national_areas_meeting_consistency_criteria.png)
 
 <!-- SLIDE:m4_4 -->
 ## Question 3: Do Related Numbers Match Up?
@@ -305,20 +305,20 @@ This accounts for patients visiting different facilities for different services.
 
 ## Consistency: FASTR Output
 
-![Internal Consistency](../resources/default_outputs/Default_4._Proportion_of_sub-national_areas_meeting_consistency_criteria.png)
+![Internal Consistency](resources/default_outputs/Default_4._Proportion_of_sub-national_areas_meeting_consistency_criteria.png)
 <!-- /SLIDE -->
 
 **5. Overall DQA Score**
 
 Heatmap table with zones as rows and time periods as columns, color-coded by DQA score percentage.
 
-![Percentage of facility-months with adequate data quality over time.](../resources/default_outputs/Default_5._Overall_DQA_score.png)
+![Percentage of facility-months with adequate data quality over time.](resources/default_outputs/Default_5._Overall_DQA_score.png)
 
 **6. Mean DQA Score**
 
 Heatmap table with zones as rows and time periods as columns, color-coded by average DQA score.
 
-![Average data quality score across facility-months.](../resources/default_outputs/Default_6._Mean_DQA_score.png)
+![Average data quality score across facility-months.](resources/default_outputs/Default_6._Mean_DQA_score.png)
 
 <!-- SLIDE:m4_5 -->
 ## Putting It All Together: Overall Data Quality
@@ -345,13 +345,13 @@ Heatmap table with zones as rows and time periods as columns, color-coded by ave
 
 ## Overall DQA Score: FASTR Output
 
-![Overall DQA Score](../resources/default_outputs/Default_5._Overall_DQA_score.png)
+![Overall DQA Score](resources/default_outputs/Default_5._Overall_DQA_score.png)
 
 ---
 
 ## Mean DQA Score: FASTR Output
 
-![Mean DQA Score](../resources/default_outputs/Default_6._Mean_DQA_score.png)
+![Mean DQA Score](resources/default_outputs/Default_6._Mean_DQA_score.png)
 <!-- /SLIDE -->
 
 **Color Coding System:**

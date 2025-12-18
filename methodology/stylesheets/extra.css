@@ -1,9 +1,7 @@
 /* Custom Styles for FASTR Methodology Documentation */
 
-/* Hide right sidebar (TOC) - keep left sidebar for module navigation */
-.md-sidebar--secondary {
-  display: none;
-}
+/* Right sidebar (TOC) styling - shows page sections */
+/* Remove "display: none" to show the table of contents on the right */
 
 /* FASTR Brand Colors */
 :root {

@@ -143,7 +143,7 @@ For each value flagged as an outlier, the module calculates what the value "shou
 
 ### Outlier Adjustment: FASTR Output
 
-![Percent change in volume due to outlier adjustment.](../resources/default_outputs/Default_1._Percent_change_in_volume_due_to_outlier_adjustment.png)
+![Percent change in volume due to outlier adjustment.](resources/default_outputs/Default_1._Percent_change_in_volume_due_to_outlier_adjustment.png)
 
 Heatmap showing percent change in service volumes due to outlier replacement.
 <!-- /SLIDE -->
@@ -159,7 +159,7 @@ This ensures that temporary reporting gaps don't create artificial drops to zero
 
 ### Completeness Adjustment: FASTR Output
 
-![Percent change in volume due to completeness adjustment.](../resources/default_outputs/Default_2._Percent_change_in_volume_due_to_completeness_adjustment.png)
+![Percent change in volume due to completeness adjustment.](resources/default_outputs/Default_2._Percent_change_in_volume_due_to_completeness_adjustment.png)
 
 Heatmap showing percent change in service volumes due to missing data imputation.
 <!-- /SLIDE -->
@@ -168,7 +168,7 @@ Heatmap showing percent change in service volumes due to missing data imputation
 
 Heatmap showing percent change in service volumes when both outlier and completeness adjustments are applied, with geographic areas as rows and indicators as columns.
 
-![Percent change in volume due to both outlier and completeness adjustment.](../resources/default_outputs/Default_3._Percent_change_in_volume_due_to_both_outlier_and_completeness_adjustment.png)
+![Percent change in volume due to both outlier and completeness adjustment.](resources/default_outputs/Default_3._Percent_change_in_volume_due_to_both_outlier_and_completeness_adjustment.png)
 
 **Interpretation Guide:**
 tbd
