@@ -440,9 +440,9 @@ def main():
 
     print("   Suggested schedule:\n")
     for day, mods in days_assignment.items():
-        mod_names = [MODULES[m]['short'] for m in mods]
+        mod_labels = [f"{MODULES[m]['short']} (m{m})" for m in mods]
         total_mins = sum(MODULES[m]['duration'] for m in mods)
-        print(f"   Day {day}: {', '.join(mod_names)} ({total_mins} min)")
+        print(f"   Day {day}: {', '.join(mod_labels)} - {total_mins} min")
 
     adjust = input("\n   Adjust this schedule? [y/N]: ").strip().lower()
 
