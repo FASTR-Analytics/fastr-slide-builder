@@ -401,6 +401,8 @@ def generate_agenda_slide(config):
         # Build this slide
         if num_days <= 3:
             slide_content = "\n# Workshop Agenda\n\n"
+        elif start_day == end_day:
+            slide_content = f"\n# Workshop Agenda (Day {start_day})\n\n"
         else:
             slide_content = f"\n# Workshop Agenda (Days {start_day}-{end_day})\n\n"
 

@@ -360,34 +360,37 @@ def build_daily_schedule(day_items, start_time_mins, tea_time_mins, lunch_time_m
 
         # Check for tea break
         if items_done == 1 and current_time >= tea_time_mins - 15 and current_time < lunch_time_mins:
+            tea_end = tea_time_mins + 15
             schedule.append({
-                'time': format_time(tea_time_mins),
+                'time': f"{format_time(tea_time_mins)} - {format_time(tea_end)}",
                 'session': 'Tea Break',
                 'type': 'break',
                 'duration': 15
             })
-            current_time = tea_time_mins + 15
+            current_time = tea_end
 
         # Check for lunch (around midpoint)
         if current_time >= lunch_time_mins - 30 and current_time < lunch_time_mins + 60:
             if items_done < total_items:  # Don't add lunch at end
+                lunch_end = lunch_time_mins + 60
                 schedule.append({
-                    'time': format_time(lunch_time_mins),
+                    'time': f"{format_time(lunch_time_mins)} - {format_time(lunch_end)}",
                     'session': 'Lunch',
                     'type': 'break',
                     'duration': 60
                 })
-                current_time = lunch_time_mins + 60
+                current_time = lunch_end
 
         # Check for afternoon tea
         if current_time >= afternoon_tea_mins - 15 and items_done < total_items:
+            tea_end = afternoon_tea_mins + 15
             schedule.append({
-                'time': format_time(afternoon_tea_mins),
+                'time': f"{format_time(afternoon_tea_mins)} - {format_time(tea_end)}",
                 'session': 'Afternoon Tea',
                 'type': 'break',
                 'duration': 15
             })
-            current_time = afternoon_tea_mins + 15
+            current_time = tea_end
 
     return schedule
 
