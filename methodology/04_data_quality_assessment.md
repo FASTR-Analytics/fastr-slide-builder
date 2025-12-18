@@ -1485,7 +1485,7 @@ The module follows this sequence:
 -->
 
 <!-- SLIDE:m4_1 -->
-# Data Quality Assessment
+## Data Quality Assessment
 
 Understanding the reliability of routine health data
 

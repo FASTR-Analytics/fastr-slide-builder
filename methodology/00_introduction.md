@@ -185,7 +185,7 @@ These analyses focus on priority indicators tied to national health reforms and 
 <!-- /SLIDE -->
 
 <!-- SLIDE:m0_3 -->
-### Why rapid-cycle analytics?
+## Why rapid-cycle analytics?
 
 Existing health systems data sources are critical but often come with challenges that limit their use. Health management information system data may not be analyzed promptly or may be perceived as too low-quality to use for decision making. Traditional in-person household and facility-based surveys demand extensive resources and time, with long lags between survey design, data collection, and the availability of findings. This prevents decision-makers from using data to drive meaningful improvements in health outcomes. To fill this gap, the GFF supports countries to develop and use rapid-cycle analytic approaches.
 
@@ -201,7 +201,7 @@ Rapid-cycle analytic approaches provide timely, rigorous, and high-priority data
 <!-- /SLIDE -->
 
 <!-- SLIDE:m0_4 -->
-### Technical Approaches
+## Technical Approaches
 
 FASTR's four technical approaches, underpinned by capacity strengthening and data use support, enable countries to use rapid-cycle analytics for strengthening PHC systems and improving RMNCAH-N outcomes through the timely and high-frequency analysis and use of data.
 
