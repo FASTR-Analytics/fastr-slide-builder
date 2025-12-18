@@ -4,16 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Creating a New Project
+## 3.6 Creating a New Project
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
 - Project setup workflow
-- Configuring project settings
-- Selecting indicators and time periods
-- Managing multiple projects
-
----
+- Configuration options
+- Best practices

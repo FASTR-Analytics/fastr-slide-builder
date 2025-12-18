@@ -4,16 +4,12 @@ theme: fastr
 paginate: true
 ---
 
-# Data Visualization, Communication & Message Development
+## 7.2 Data Visualization, Communication & Message Development
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
 - Principles of effective data visualization
-- Tailoring communications for different audiences
-- Developing key messages from analysis results
-- Creating compelling data stories
-
----
+- Tailoring messages to different audiences
+- Creating compelling narratives from data
+- Best practices for presenting findings

@@ -4,16 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Creating Reports
+## 3.8 Creating Reports
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
-- Report templates and formats
-- Generating automated reports
-- Customizing report content
-- Exporting and sharing reports
-
----
+- Report templates
+- Automated report generation
+- Customizing reports

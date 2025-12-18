@@ -4,16 +4,12 @@ theme: fastr
 paginate: true
 ---
 
-# Practice: Generating Quarterly Reporting Products
+## 7.5 Practice: Generating Quarterly Reporting Products
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
-- Hands-on practice generating quarterly reports
-- Using the FASTR analytics platform for reporting
-- Creating standard reporting products
-- Establishing quarterly review routines
-
----
+- Quarterly reporting workflow
+- Using the FASTR platform for automated reports
+- Quality assurance for reports
+- Distribution and feedback mechanisms

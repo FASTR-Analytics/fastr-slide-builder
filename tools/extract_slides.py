@@ -52,12 +52,34 @@ MODULE_FOLDERS = {
 
 # Topic names for generating filenames
 TOPIC_NAMES = {
-    # m0 - Introduction
-    'm0_1': 'introduce_fastr_approach',
-    'm0_2': 'overview_of_resources',
-    'm0_3': 'models_of_implementation',
+    # m0 - Introduction (from 00_introduction.md)
+    'm0_1': 'introduction_to_fastr',
+    'm0_2': 'rmncahn_service_use_monitoring',
+    'm0_3': 'why_rapid_cycle_analytics',
+    'm0_4': 'technical_approaches',
+    'm0_5': 'fastr_approach_to_routine_data_analysis',
 
-    # m4 - Data Quality Assessment
+    # m1 - Identify Questions & Indicators (from 01_identify_questions_indicators.md)
+    'm1_1': 'fastr_gaps_challenges',
+    'm1_2': 'development_of_data_use_case',
+    'm1_3': 'defining_priority_questions',
+    'm1_4': 'preparing_for_data_extraction',
+
+    # m2 - Data Extraction (from 02_data_extraction.md)
+    'm2_1': 'why_extract_data',
+    'm2_2': 'tools_for_data_extraction',
+
+    # m3 - FASTR Analytics Platform (from 03_fastr_analytics_platform.md)
+    'm3_1': 'overview_of_platform',
+    'm3_2': 'accessing_platform',
+    'm3_3': 'setting_up_structure',
+    'm3_4': 'importing_dataset',
+    'm3_5': 'installing_running_modules',
+    'm3_6': 'creating_new_project',
+    'm3_7': 'creating_visualizations',
+    'm3_8': 'creating_reports',
+
+    # m4 - Data Quality Assessment (from 04_data_quality_assessment.md)
     'm4_1': 'approach_to_dqa',
     'm4_2': 'indicator_completeness',
     'm4_3': 'outliers',
@@ -65,18 +87,23 @@ TOPIC_NAMES = {
     'm4_5': 'overall_dqa_score',
     'm4_6': 'assessing_dq_in_platform',
 
-    # m5 - Data Quality Adjustment
+    # m5 - Data Quality Adjustment (from 05_data_quality_adjustment.md)
     'm5_1': 'approach_to_dq_adjustment',
     'm5_2': 'adjustment_for_outliers',
     'm5_3': 'adjustment_for_completeness',
     'm5_4': 'adjusting_dq_in_platform',
 
-    # m6 - Data Analysis
+    # m6 - Data Analysis (from 06a_service_utilization.md, 06b_coverage_estimates.md)
     'm6_1': 'service_utilization',
     'm6_2': 'surplus_disruption_analyses',
     'm6_3': 'service_coverage',
 
-    # Add more as needed...
+    # m7 - Results Communication (from 07_results_communication.md)
+    'm7_1': 'analytical_thinking_interpretation',
+    'm7_2': 'data_visualization_communication',
+    'm7_3': 'using_data_for_decision_making',
+    'm7_4': 'stakeholder_engagement_advocacy',
+    'm7_5': 'practice_quarterly_reporting',
 }
 
 # Marp frontmatter to add to extracted slides
@@ -157,8 +184,9 @@ def fix_image_paths(content, source_file):
     """
     Fix image paths to be relative to core_content folder.
 
-    Images in methodology use paths like: images/foo.png
-    These need to become: ../../methodology/images/foo.png
+    Images in methodology use paths like: ../resources/diagrams/foo.svg
+    These need to become: ../../resources/diagrams/foo.svg
+    (adding one more ../ since core_content is one level deeper)
     """
     # Pattern for markdown images
     def replace_image(match):
@@ -169,17 +197,24 @@ def fix_image_paths(content, source_file):
         if img_path.startswith('http://') or img_path.startswith('https://'):
             return match.group(0)
 
-        # Skip already-fixed paths
-        if img_path.startswith('../../methodology/'):
+        # Skip already-fixed paths (starts with ../../resources)
+        if img_path.startswith('../../resources/'):
             return match.group(0)
 
-        # Fix relative paths from methodology folder
-        if img_path.startswith('images/'):
-            new_path = f"../../methodology/{img_path}"
+        # Fix paths that reference ../resources/ (from methodology folder)
+        if img_path.startswith('../resources/'):
+            new_path = f"../{img_path}"  # Add one more ../
             return f"![{alt_text}]({new_path})"
 
-        # For other relative paths, assume they're in methodology
-        new_path = f"../../methodology/images/{os.path.basename(img_path)}"
+        # Legacy: Fix old-style paths from methodology/images/
+        if img_path.startswith('images/'):
+            # Map to new resources structure
+            filename = os.path.basename(img_path)
+            new_path = f"../../resources/default_outputs/{filename}"
+            return f"![{alt_text}]({new_path})"
+
+        # For other relative paths, try to map to resources
+        new_path = f"../../resources/default_outputs/{os.path.basename(img_path)}"
         return f"![{alt_text}]({new_path})"
 
     return re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', replace_image, content)

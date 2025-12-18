@@ -4,16 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Importing a Dataset
+## 3.4 Importing a Dataset
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
-- Direct import from DHIS2
-- Uploading CSV files
-- Data validation and error handling
-- Managing imported datasets
-
----
+- Data format requirements
+- Import process
+- Validation and error handling

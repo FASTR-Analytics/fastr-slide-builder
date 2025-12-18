@@ -3,73 +3,27 @@ marp: true
 theme: fastr
 paginate: true
 ---
-# Data Adjustment
 
-Fixing data quality issues to enable reliable analysis
+## Approach to Data Quality Adjustment
 
----
+The Data Quality Adjustment module systematically corrects two common problems in routine health facility data:
 
-## What Do We Do About Quality Issues?
+1. **Outliers** - extreme values caused by reporting errors or data entry mistakes
+2. **Missing data** - from incomplete reporting
 
----
-
-## Two Options: Accept or Adjust
-
-**Option 1: Just report the quality issues**
-- Show which data has problems
-- Let users decide whether to use it
-- Be transparent about limitations
-
-**Option 2: Try to fix the problems statistically**
-- Replace bad values with estimates
-- Fill in missing reports
-- Produce "cleaned" datasets
-
-**FASTR does both** - we report quality issues AND provide adjusted datasets, so users can choose.
+Rather than simply deleting problematic data, this module replaces questionable values with statistically sound estimates based on each facility's own historical patterns.
 
 ---
 
-## Four Versions of the Data
+### Four Adjustment Scenarios
 
-**To give users flexibility, we create four versions:**
+The module produces four parallel versions of the data:
 
-1. **Original (no changes):** Raw data as reported
-2. **Outliers fixed:** Only extreme values replaced
-3. **Missing filled:** Only gaps filled in
-4. **Both fixed:** Outliers replaced AND gaps filled
+| Scenario | Description |
+|----------|-------------|
+| **None** | Original data, no adjustments |
+| **Outliers only** | Only outlier corrections applied |
+| **Completeness only** | Only missing data filled in |
+| **Both** | Both types of corrections applied |
 
-**Why four versions?**
-- You can see the impact of adjustments
-- Choose the version that makes sense for your analysis
-- Transparency about what was changed
-
-**Most common choice:** Version 4 (both adjustments) for cleanest analysis
-
----
-
-## Real-World Example: Comparing Versions
-
-**Province Y - Institutional Deliveries (Q1 totals):**
-
-| Version | Total Deliveries | Difference |
-|---------|------------------|------------|
-| Original (no changes) | 12,450 | Baseline |
-| Outliers fixed | 11,890 | -560 (outliers removed) |
-| Missing filled | 13,210 | +760 (gaps filled) |
-| Both fixed | 12,650 | +200 (net effect) |
-
-**Interpretation:** Outliers were inflating the total, but missing reports were deflating it. The "both fixed" version is probably closest to reality.
-
----
-
-## Volume Change: FASTR Output
-
-![Volume Change Due to DQ Adjustments](../../assets/fastr-outputs/m2_Volume_change_due_to_data_quality_adjustments.png)
-
----
-
-## Service Volume Trends: FASTR Output
-
-![Service Volume by Year](../../assets/fastr-outputs/m2_Change_in_service_volume_(Admin_area_2).png)
-
----
+This allows analysts to understand how sensitive their results are to different data quality assumptions.

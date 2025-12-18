@@ -4,16 +4,12 @@ theme: fastr
 paginate: true
 ---
 
-# Preparing for Data Extraction
+## 1.4 Preparing for Data Extraction
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
 - Pre-extraction checklist
 - Understanding your DHIS2 configuration
 - Mapping indicators to data elements
 - Planning your extraction timeline
-
----

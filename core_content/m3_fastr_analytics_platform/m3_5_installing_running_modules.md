@@ -4,16 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Installing and Running Modules
+## 3.5 Installing and Running Modules
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
 - Available analysis modules
-- Installing modules for your project
-- Running module analyses
-- Understanding module outputs
-
----
+- Module installation
+- Running analyses

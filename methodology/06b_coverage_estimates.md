@@ -1,4 +1,29 @@
-# Module 4: Coverage Estimates
+# Module 6: Data Analysis - Coverage Estimates
+
+<!-- SLIDE:m6_3 -->
+## Service Coverage Estimates
+
+This module estimates health service coverage by answering: **"What percentage of the target population received this health service?"**
+
+**Three data sources integrated:**
+1. Adjusted health service volumes from HMIS
+2. Population projections from United Nations
+3. Household survey data from MICS/DHS
+
+---
+
+### Two-Part Process
+
+**Part 1: Denominator Calculation**
+- Calculate target populations using multiple methods (HMIS-based and population-based)
+- Compare against survey benchmarks
+- Automatically select best denominator for each indicator
+
+**Part 2: Coverage Estimation**
+- Override automatic selections based on programmatic knowledge
+- Project survey estimates forward using HMIS trends
+- Generate final coverage estimates
+<!-- /SLIDE -->
 
 ## 1. Overview (What & Why)
 
@@ -158,19 +183,19 @@ The FASTR analysis generates coverage estimate visualizations at multiple geogra
 
 Time series showing coverage estimates calculated from HMIS service volumes at the national level, comparing HMIS-based estimates with survey benchmarks.
 
-![Coverage calculated from HMIS data at national level.](images/Module4_1_Coverage_HMIS_National.png)
+![Coverage calculated from HMIS data at national level.](../resources/default_outputs/Module4_1_Coverage_HMIS_National.png)
 
 **2. Coverage Calculated from HMIS Data (Admin Area 2)**
 
 Coverage estimates disaggregated to admin area 2 level, enabling identification of subnational variation in service coverage.
 
-![Coverage calculated from HMIS data at admin area 2 level.](images/Module4_2_Coverage_HMIS_Admin2.png)
+![Coverage calculated from HMIS data at admin area 2 level.](../resources/default_outputs/Module4_2_Coverage_HMIS_Admin2.png)
 
 **3. Coverage Calculated from HMIS Data (Admin Area 3)**
 
 Highly disaggregated coverage estimates at admin area 3 level for detailed geographic analysis where data quality permits.
 
-![Coverage calculated from HMIS data at admin area 3 level.](images/Module4_3_Coverage_HMIS_Admin3.png)
+![Coverage calculated from HMIS data at admin area 3 level.](../resources/default_outputs/Module4_3_Coverage_HMIS_Admin3.png)
 
 **Interpretation Guide:**
 

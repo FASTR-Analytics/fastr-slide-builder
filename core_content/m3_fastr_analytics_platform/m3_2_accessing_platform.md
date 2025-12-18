@@ -4,16 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Accessing the Platform
+## 3.2 Accessing the Platform
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
-- Creating user accounts
-- Signing in to the platform
+- Creating accounts
+- Signing in
 - User permissions and roles
-- Account management
-
----

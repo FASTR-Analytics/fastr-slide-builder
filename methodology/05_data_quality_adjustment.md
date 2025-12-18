@@ -1,4 +1,30 @@
-# Module 2: Data Quality Adjustment
+# Module 5: Data Quality Adjustment
+
+<!-- SLIDE:m5_1 -->
+## Approach to Data Quality Adjustment
+
+The Data Quality Adjustment module systematically corrects two common problems in routine health facility data:
+
+1. **Outliers** - extreme values caused by reporting errors or data entry mistakes
+2. **Missing data** - from incomplete reporting
+
+Rather than simply deleting problematic data, this module replaces questionable values with statistically sound estimates based on each facility's own historical patterns.
+
+---
+
+### Four Adjustment Scenarios
+
+The module produces four parallel versions of the data:
+
+| Scenario | Description |
+|----------|-------------|
+| **None** | Original data, no adjustments |
+| **Outliers only** | Only outlier corrections applied |
+| **Completeness only** | Only missing data filled in |
+| **Both** | Both types of corrections applied |
+
+This allows analysts to understand how sensitive their results are to different data quality assumptions.
+<!-- /SLIDE -->
 
 ## 1. Overview (What & Why)
 
@@ -103,23 +129,46 @@ By producing four scenarios, the module allows different use cases:
 
 The FASTR analysis generates three main visual outputs comparing service volumes before and after adjustments:
 
-**1. Outlier Adjustment Impact**
+<!-- SLIDE:m5_2 -->
+## Adjustment for Outliers
 
-Heatmap showing percent change in service volumes due to outlier replacement, with geographic areas as rows and indicators as columns.
+For each value flagged as an outlier, the module calculates what the value "should have been" based on that facility's historical pattern.
 
-![Percent change in volume due to outlier adjustment.](images/Default_1._Percent_change_in_volume_due_to_outlier_adjustment.png)
+**Methods used (in order of preference):**
+1. Average of 3 months before and 3 months after
+2. Same month from the previous year (for seasonal indicators)
+3. Facility-specific historical average
 
-**2. Completeness Adjustment Impact**
+---
 
-Heatmap showing percent change in service volumes due to missing data imputation, with geographic areas as rows and indicators as columns.
+### Outlier Adjustment: FASTR Output
 
-![Percent change in volume due to completeness adjustment.](images/Default_2._Percent_change_in_volume_due_to_completeness_adjustment.png)
+![Percent change in volume due to outlier adjustment.](../resources/default_outputs/Default_1._Percent_change_in_volume_due_to_outlier_adjustment.png)
+
+Heatmap showing percent change in service volumes due to outlier replacement.
+<!-- /SLIDE -->
+
+<!-- SLIDE:m5_3 -->
+## Adjustment for Completeness
+
+For months where data is missing or marked as incomplete, the module imputes (fills in) values using the same rolling average approach.
+
+This ensures that temporary reporting gaps don't create artificial drops to zero in the data.
+
+---
+
+### Completeness Adjustment: FASTR Output
+
+![Percent change in volume due to completeness adjustment.](../resources/default_outputs/Default_2._Percent_change_in_volume_due_to_completeness_adjustment.png)
+
+Heatmap showing percent change in service volumes due to missing data imputation.
+<!-- /SLIDE -->
 
 **3. Combined Adjustment Impact**
 
 Heatmap showing percent change in service volumes when both outlier and completeness adjustments are applied, with geographic areas as rows and indicators as columns.
 
-![Percent change in volume due to both outlier and completeness adjustment.](images/Default_3._Percent_change_in_volume_due_to_both_outlier_and_completeness_adjustment.png)
+![Percent change in volume due to both outlier and completeness adjustment.](../resources/default_outputs/Default_3._Percent_change_in_volume_due_to_both_outlier_and_completeness_adjustment.png)
 
 **Interpretation Guide:**
 tbd

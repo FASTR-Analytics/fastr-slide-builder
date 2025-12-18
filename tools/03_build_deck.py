@@ -71,9 +71,11 @@ MODULES = {
         'name': 'Introduction to FASTR',
         'folder': 'm0_introduction',
         'topics': [
-            ('m0_1', 'm0_1_introduce_fastr_approach.md'),
-            ('m0_2', 'm0_2_overview_of_resources.md'),
-            ('m0_3', 'm0_3_models_of_implementation.md'),
+            ('m0_1', 'm0_1_introduction_to_fastr.md'),
+            ('m0_2', 'm0_2_rmncahn_service_use_monitoring.md'),
+            ('m0_3', 'm0_3_why_rapid_cycle_analytics.md'),
+            ('m0_4', 'm0_4_technical_approaches.md'),
+            ('m0_5', 'm0_5_fastr_approach_to_routine_data_analysis.md'),
         ],
     },
     1: {
@@ -117,7 +119,6 @@ MODULES = {
             ('m4_3', 'm4_3_outliers.md'),
             ('m4_4', 'm4_4_internal_consistency.md'),
             ('m4_5', 'm4_5_overall_dqa_score.md'),
-            ('m4_6', 'm4_6_assessing_dq_in_platform.md'),
         ],
     },
     5: {
@@ -127,7 +128,6 @@ MODULES = {
             ('m5_1', 'm5_1_approach_to_dq_adjustment.md'),
             ('m5_2', 'm5_2_adjustment_for_outliers.md'),
             ('m5_3', 'm5_3_adjustment_for_completeness.md'),
-            ('m5_4', 'm5_4_adjusting_dq_in_platform.md'),
         ],
     },
     6: {

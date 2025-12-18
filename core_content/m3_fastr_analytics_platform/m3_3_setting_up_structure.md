@@ -4,16 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Setting Up the Structure
+## 3.3 Setting Up the Structure
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
-- Configuring administrative areas
+- Configuring admin areas (regions, districts)
 - Setting up facilities
-- Defining indicators in the platform
-- Organizational hierarchy setup
-
----
+- Defining indicators

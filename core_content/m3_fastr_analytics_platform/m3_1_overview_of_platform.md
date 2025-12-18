@@ -4,15 +4,11 @@ theme: fastr
 paginate: true
 ---
 
-# Overview of the FASTR Analytics Platform
+## 3.1 Overview of the Platform
 
----
-
-## Content Coming Soon
+*Content to be developed*
 
 This section will cover:
 - Introduction to the FASTR analytics platform
 - Key features and capabilities
 - How the platform supports the FASTR methodology
-
----
