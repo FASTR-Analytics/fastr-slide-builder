@@ -19,6 +19,24 @@ import sys
 import re
 import argparse
 import importlib.util
+from pathlib import Path
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AUTO-DETECT AND USE VENV
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def ensure_venv():
+    """Re-execute with venv Python if not already in venv."""
+    if sys.prefix != sys.base_prefix:
+        return
+    script_dir = Path(__file__).resolve().parent
+    project_root = script_dir.parent
+    for venv_name in ['.venv', 'venv']:
+        venv_python = project_root / venv_name / 'bin' / 'python3'
+        if venv_python.exists():
+            os.execv(str(venv_python), [str(venv_python)] + sys.argv)
+
+ensure_venv()
 
 # Sessions defined in build script
 SESSIONS = {
