@@ -28,12 +28,10 @@ paginate: true
 
 ## Overall DQA Score: FASTR Output
 
-![Overall DQA Score](../../assets/fastr-outputs/m1_Overall_DQA_score.png)
+![Overall DQA Score](../../methodology/images/Default_5._Overall_DQA_score.png)
 
 ---
 
 ## Mean DQA Score: FASTR Output
 
-![Mean DQA Score](../../assets/fastr-outputs/m1_Mean_DQA_score.png)
-
----
+![Mean DQA Score](../../methodology/images/Default_6._Mean_DQA_score.png)

@@ -3,6 +3,7 @@ marp: true
 theme: fastr
 paginate: true
 ---
+
 # Data Quality Assessment
 
 Understanding the reliability of routine health data
@@ -35,5 +36,3 @@ Understanding the reliability of routine health data
 - Consistency: Do related services show expected patterns?
 
 These three questions help us understand if we can trust the data for decision-making.
-
----
