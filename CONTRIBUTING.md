@@ -144,7 +144,7 @@ No installation needed:
 
 ### Local Setup
 
-See [help and instructions/local-setup.md](help%20and%20instructions/local-setup.md)
+See [help and instructions/01_local_setup.md](help%20and%20instructions/01_local_setup.md)
 
 ```bash
 git clone https://github.com/FASTR-Analytics/fastr-slide-builder.git
