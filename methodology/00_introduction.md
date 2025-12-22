@@ -163,9 +163,17 @@ The FASTR analytics platform includes four automated modules:
 <!-- SLIDE:m0_1 -->
 ## Introduction to FASTR
 
-The Global Financing Facility (GFF) supports country-led efforts to improve the timely use of data for decision-making, ultimately leading to stronger primary healthcare (PHC) systems and better reproductive, maternal, newborn, child, and adolescent health and nutrition (RMNCAH-N) outcomes. This set of initiatives and technical support is referred to as **Frequent Assessments and Health System Tools for Resilience (FASTR)**.
+The Global Financing Facility (GFF) supports country-led efforts to improve the timely use of data for decision-making, ultimately leading to stronger primary healthcare (PHC) systems and better reproductive, maternal, newborn, child, and adolescent health and nutrition (RMNCAH-N) outcomes.
 
-FASTR encompasses four technical approaches: (1) RMNCAH-N service use monitoring using routine HMIS data, (2) rapid-cycle health facility phone surveys, (3) high-frequency household phone surveys, and (4) follow-on analyses. **This methodology documentation focuses specifically on the first approach: RMNCAH-N service use monitoring.**
+This set of initiatives and technical support is referred to as **Frequent Assessments and Health System Tools for Resilience (FASTR)**.
+
+---
+
+FASTR encompasses four technical approaches:
+1. RMNCAH-N service use monitoring using routine HMIS data
+2. Rapid-cycle health facility phone surveys
+3. High-frequency household phone surveys
+4. Follow-on analyses.
 <!-- /SLIDE -->
 
 <!-- SLIDE:m0_2 -->
@@ -176,6 +184,8 @@ The GFF collaborates with Ministries of Health to conduct rapid-cycle analyses o
 1. **Assess data quality** at national and sub-national levels to identify and address completeness, accuracy, and consistency issues
 2. **Track service utilization changes** by measuring monthly shifts in priority RMNCAH-N health service volumes
 3. **Monitor coverage progress** by comparing service delivery trends against country-specific targets and benchmarks
+
+---
 
 These analyses focus on priority indicators tied to national health reforms and World Bank investments, with findings informing country planning processes and project implementation cycles. During the COVID-19 pandemic, the GFF supported Ministries of Health in over 20 countries to monitor the impact of the pandemic on essential health services using this approach.
 
@@ -230,7 +240,6 @@ The FASTR approach to routine data analysis takes a three-pronged approach:
 3. **Analyze data to answer pressing country-specific policy questions** including identifying changes in priority service volumes and trends in service coverage as compared to country priorities and targets
 
 ---
-
 This approach enables identification of the highest priority data quality issues and subsequent necessary analytical adjustments so that data can be continually improved while appropriate analyses are conducted. Data quality assessment is conducted by indicator and can be disaggregated at sub-national level given facility-level data is used for the analysis. This is important to generate policy relevant regular reporting on data quality, service volume, and coverage estimates which provides a continual snapshot of RMNCAH-N service use.
 
 ---
