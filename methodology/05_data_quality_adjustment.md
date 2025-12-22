@@ -1,6 +1,6 @@
 # Data Quality Adjustment
 
-## 1. Overview (What & Why)
+## Overview (What & Why)
 
 ### What does this module do?
 
@@ -34,7 +34,7 @@ By systematically addressing these data quality issues before analysis, this mod
 
 ---
 
-## 2. How It Works
+## How It Works
 
 ### High-Level Workflow
 
@@ -105,7 +105,7 @@ The FASTR analysis generates three main visual outputs comparing service volumes
 
 ---
 
-## 3. Detailed Reference
+## Detailed Reference
 
 ### Configuration Parameters
 

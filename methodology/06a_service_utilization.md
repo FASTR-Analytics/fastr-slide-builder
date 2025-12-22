@@ -1,6 +1,6 @@
 # Service Utilization Analysis
 
-## 1. Overview (What & Why)
+## Overview (What & Why)
 
 ### What does this module do?
 
@@ -26,7 +26,7 @@ This module provides objective, data-driven identification of service delivery p
 
 ---
 
-## 2. How It Works
+## How It Works
 
 ### High-Level Workflow
 
@@ -95,7 +95,7 @@ The control chart level determines where the statistical modeling occurs (trend 
 
 ---
 
-## 3. Detailed Reference
+## Detailed Reference
 
 ### Configuration Parameters
 

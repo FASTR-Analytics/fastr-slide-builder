@@ -1,6 +1,6 @@
 # Coverage Estimates
 
-## 1. Overview (What & Why)
+## Overview (What & Why)
 
 ### What does this module do?
 
@@ -60,7 +60,7 @@ This module addresses some challenges in coverage estimation:
 
 ---
 
-## 2. How It Works
+## How It Works
 
 ### High-Level Workflow
 
@@ -162,7 +162,7 @@ Each health indicator targets a specific population (e.g., pregnant women for AN
 
 ---
 
-## 3. Detailed Reference
+## Detailed Reference
 
 ### Part 1: Denominator Calculation (Technical Details)
 

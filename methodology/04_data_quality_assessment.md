@@ -1,6 +1,6 @@
 # Data Quality Assessment (DQA)
 
-## 1. Overview (What & Why)
+## Overview (What & Why)
 
 ### What does this module do?
 
@@ -25,7 +25,7 @@ Data quality directly impacts the reliability of health indicators and coverage 
 
 ---
 
-## 2. How It Works
+## How It Works
 
 ### High-Level Workflow
 
@@ -139,7 +139,7 @@ Heatmap table with zones as rows and time periods as columns, color-coded by ave
 
 ---
 
-## 3. Detailed Reference
+## Detailed Reference
 
 This section provides technical details for implementers, developers, and analysts who need to understand the underlying methodology.
 
